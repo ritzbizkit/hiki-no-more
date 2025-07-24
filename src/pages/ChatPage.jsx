@@ -27,7 +27,7 @@ const ChatPage = () => {
     hideKeyboard();
 
     try {
-      // THIS IS THE FIX: The URL now points to your local proxy
+      // This now correctly points to your local proxy
       const response = await fetch('/api/chat', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -37,10 +37,13 @@ const ChatPage = () => {
         }),
       });
 
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
       const buddyReply = { sender: 'buddy', text: data.reply }; 
+
       setMessages(currentMessages => [...currentMessages, buddyReply]);
 
     } catch (error) {
