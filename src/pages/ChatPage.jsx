@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { useKeyboard } from '../context/KeyboardContext.jsx';
@@ -9,7 +9,6 @@ const ChatPage = () => {
   const { chosenBuddy } = useBuddy();
   const { buddyName } = useParams();
 
-  // 1. State for the conversation history, the user's current message, and loading status
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,33 +16,31 @@ const ChatPage = () => {
   const buddy = chosenBuddy || { name: buddyName, imageSrc: '/nervy1.svg' };
   const displayName = buddy.name.charAt(0).toUpperCase() + buddy.name.slice(1);
 
-  // 2. This function handles sending a message
   const handleSendMessage = async (event) => {
     event.preventDefault();
     if (newMessage.trim() === '') return;
 
     const userMessage = { sender: 'user', text: newMessage };
-    // Add the user's message to the chat history immediately
     setMessages(currentMessages => [...currentMessages, userMessage]);
-    setNewMessage(''); // Clear the input field
-    setIsLoading(true); // Show the "typing..." indicator
+    setNewMessage('');
+    setIsLoading(true);
     hideKeyboard();
 
     try {
-      // 3. Make the API call to your backend
-      const response = await fetch('https://your-api-server.com/chat', { // <-- REPLACE THIS URL
+      // THIS IS THE FIX: The URL now points to your local proxy
+      const response = await fetch('/api/chat', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: newMessage,
-          buddy: buddy.name // Send the buddy's name to the server
+          buddy: buddy.name 
         }),
       });
 
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
       const data = await response.json();
-      const buddyReply = { sender: 'buddy', text: data.reply }; // Assuming the server responds with { "reply": "..." }
-
-      // Add the buddy's reply to the chat history
+      const buddyReply = { sender: 'buddy', text: data.reply }; 
       setMessages(currentMessages => [...currentMessages, buddyReply]);
 
     } catch (error) {
@@ -51,13 +48,12 @@ const ChatPage = () => {
       const errorReply = { sender: 'buddy', text: "Sorry, I'm having trouble connecting right now." };
       setMessages(currentMessages => [...currentMessages, errorReply]);
     } finally {
-      setIsLoading(false); // Hide the "typing..." indicator
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="h-screen flex flex-col" style={{ backgroundColor: '#FBFBFE' }}>
-      {/* Header */}
       <div className="bg-blue-100 p-4 rounded-b-xl shadow-sm text-center relative">
         <Link to="/chat" className="absolute left-4 top-4"><ChevronLeftIcon className="w-6 h-6 text-gray-800" /></Link>
         <h1 className="text-xl font-bold text-gray-800">Chat with {displayName}!</h1>
@@ -67,7 +63,6 @@ const ChatPage = () => {
         </Link>
       </div>
 
-      {/* Chat Area */}
       <div className="flex-grow p-4 space-y-4 overflow-y-auto">
         {messages.map((msg, index) => (
           <div key={index} className={`chat ${msg.sender === 'user' ? 'chat-end' : 'chat-start'}`}>
@@ -83,7 +78,6 @@ const ChatPage = () => {
         )}
       </div>
 
-      {/* Text Input Area is now a form */}
       <form onSubmit={handleSendMessage} className="p-4 bg-white">
         <input 
           type="text" 
