@@ -1,54 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { useKeyboard } from '../context/KeyboardContext.jsx';
 import { useBuddy } from '../context/BuddyContext.jsx';
+import { useChat } from '../context/ChatContext.jsx';
+
+const buddyToPresetMap = {
+  nervy: 'NERVY_BOT',
+  obli: 'ENTHU_BOT',
+  iso: 'ISO_BOT',
+  avoi: 'AVOI_BOT',
+};
 
 const ChatPage = () => {
   const { showKeyboard, hideKeyboard } = useKeyboard();
   const { chosenBuddy } = useBuddy();
+  const { chatManager } = useChat();
   const { buddyName } = useParams();
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const buddy = chosenBuddy || { name: buddyName, imageSrc: '/nervy1.svg' };
   const displayName = buddy.name.charAt(0).toUpperCase() + buddy.name.slice(1);
+  const preset = buddyToPresetMap[buddy.name.toLowerCase()] || 'GENERAL_BOT';
+
+  const chatSession = useMemo(() => {
+    return chatManager.getChat(buddy.name, preset);
+  }, [chatManager, buddy.name, preset]);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      setIsLoading(true);
+      try {
+        const history = await chatSession.getHistory();
+        setMessages(history);
+      } catch (error) {
+        console.error("Failed to fetch history:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchHistory();
+  }, [chatSession]);
 
   const handleSendMessage = async (event) => {
     event.preventDefault();
-    if (newMessage.trim() === '') return;
+    if (newMessage.trim() === '' || isLoading) return;
 
-    const userMessage = { sender: 'user', text: newMessage };
+    const userMessage = { role: 'user', content: newMessage };
     setMessages(currentMessages => [...currentMessages, userMessage]);
     setNewMessage('');
     setIsLoading(true);
     hideKeyboard();
 
     try {
-      // This now correctly points to your local proxy
-      const response = await fetch('/api/chat', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: newMessage,
-          buddy: buddy.name 
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const buddyReply = { sender: 'buddy', text: data.reply }; 
-
+      const response = await chatSession.chat(newMessage);
+      const buddyReply = { role: 'assistant', content: response };
       setMessages(currentMessages => [...currentMessages, buddyReply]);
-
     } catch (error) {
-      console.error("Error fetching chatbot response:", error);
-      const errorReply = { sender: 'buddy', text: "Sorry, I'm having trouble connecting right now." };
+      console.error("Error with SDK chat:", error);
+      const errorReply = { role: 'assistant', content: "Sorry, I had an issue responding." };
       setMessages(currentMessages => [...currentMessages, errorReply]);
     } finally {
       setIsLoading(false);
@@ -68,8 +81,8 @@ const ChatPage = () => {
 
       <div className="flex-grow p-4 space-y-4 overflow-y-auto">
         {messages.map((msg, index) => (
-          <div key={index} className={`chat ${msg.sender === 'user' ? 'chat-end' : 'chat-start'}`}>
-            <div className={`chat-bubble ${msg.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>{msg.text}</div>
+          <div key={index} className={`chat ${msg.role === 'user' ? 'chat-end' : 'chat-start'}`}>
+            <div className={`chat-bubble ${msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>{msg.content}</div>
           </div>
         ))}
         {isLoading && (
