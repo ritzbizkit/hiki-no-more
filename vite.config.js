@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // Any request starting with /api will be sent to the target server
       '/api': {
-        target: 'https://interpause.github.io/hikkinomore-buddy-server', // The REAL server URL
+        target: 'https://miro.interpause.dev', // The REAL server URL
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''), // This removes /api before sending
       },
