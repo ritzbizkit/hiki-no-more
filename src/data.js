@@ -8,7 +8,12 @@ export const quizData = {
 export const resultsData = {
   nervy: { name: "Nervy", imageSrc: "/nervy1.svg", quote: "I'm always around people but inside, I'm anxious and afraid of saying the wrong thing.", description: "Find yourself thinking this? Pick Nervy to build confidence in group settings and learn how to relax and be true to yourself around others." },
   obli: { name: "Obli", imageSrc: "/Enthu.svg", quote: "I get excited talking about what I love, but don't always realise when others tune out.", description: "Find yourself thinking this? Pick Obli to improve your social awareness and connect with people without dimming your passion." },
-  iso: { name: "Iso", imageSrc: "/iso.svg", quote: "I prefer being alone but deep down, I wish I knew how to make real friends.", description: "Find yourself thinking this? Pick Iso to take small meaningful steps towards forming meaningful friendships without burning out." },
+  iso: { 
+    name: "Iso", 
+    imageSrc: "/Iso.svg", // This is the updated line
+    quote: "I prefer being alone but deep down, I wish I knew how to make real friends.", 
+    description: "Find yourself thinking this? Pick Iso to take small meaningful steps towards forming meaningful friendships without burning out." 
+  },
   avoi: { name: "Avoi", imageSrc: "/Avoi.svg", quote: "I'm confident in formal settings, but casual socialising feels awkward and exhausting.", description: "Find yourself thinking this? Pick Avoi to feel more at ease in informal settings and learn to open up without losing your boundaries." }
 };
 
@@ -43,46 +48,10 @@ export const questData = {
   obli: {
     title: "Enthu's Quests",
     arcs: {
-      listento: {
-        title: "Learn to listen Arc", completion: "30/100", description: "This arc targets learning to read the room and listen with intention. Reach 70pts to reach the next stage!",
-        quests: [
-          { title: "Vibe check", points: "+5pts", detail: "User reflects on how someone might have felt during a past conversation." },
-          { title: "Did I go too fast?", points: "+4pts", detail: "User wonders if they overwhelmed someone with their energy." },
-          { title: "Their turn now.", points: "+3pts", detail: "User shifts focus to what the other person might want to say or share." },
-          { title: "Two-way street.", points: "+3pts", detail: "User identifies a moment when a convo felt one-sided." },
-          { title: "Listening is love.", points: "+4pts", detail: "User summaries what someone else said." },
-        ]
-      },
-      excitement: {
-        title: "Excitement Arc", completion: "75/100", description: "This arc focuses on sharing passions and interests without monologue. Reach 100pts to reach the next stage!",
-        quests: [
-          { title: "So cool, right?", points: "+5pts", detail: "User shares something they're excited about without monologuing." },
-          { title: "Wanna know more?", points: "+4pts", detail: "User checks in with the bot or someone else before launching into detail." },
-          { title: "Little sparks.", points: "+3pts", detail: "User celebrates a small joy or quirky interest in relation to Iso's conversation." },
-          { title: "Tell me yours!", points: "+3pts", detail: "User asks about someone else's interests or joys." },
-          { title: "Shared hype.", points: "+4pts", detail: "User finds overlap between their passion and someone else's world." },
-        ]
-      },
-      deepconversation: {
-        title: "Deep conversation Arc", completion: "25/100", description: "This arc focuses on identifying mutual or rising interest before sharing meaningful info. Reach 50pts to reach the next stage!",
-        quests: [
-          { title: "Oops, that was a lot.", points: "+5pts", detail: "User acknowledges they may have over-explained something." },
-          { title: "Still proud.", points: "+4pts", detail: "User practices a scenario where Iso is not interested in their enthusiasm." },
-          { title: "Pause + play.", points: "+3pts", detail: "User practices pausing mid-conversation to check in with the other side." },
-          { title: "Not everyone gets it.", points: "+3pts", detail: "User talks about a time someone didn't 'get' their passion and accepts it." },
-          { title: "Bright, not blinding.", points: "+4pts", detail: "User finds a way to express themselves that's both joyful and mindful." },
-        ]
-      },
-      connection: {
-        title: "Connection arc", completion: "43/100", description: "This arc focuses on building meaningful relationships through sharing excitement & passion. Reach 50pts to reach the next stage!",
-        quests: [
-          { title: "Tell me what you love.", points: "+5pts", detail: "User expresses curiosity in someone else's hobby or passion." },
-          { title: "Ohhh, I see it now.", points: "+4pts", detail: "User demonstrates understanding of how someone else feels." },
-          { title: "Not just noise.", points: "+3pts", detail: "User reflects on something a friend said that stuck with them." },
-          { title: "Cheer squad.", points: "+3pts", detail: "User affirms or hypes someone else up genuinely." },
-          { title: "The real convo.", points: "+4pts", detail: "User connects with the same level of enthusiasm on a matching topic they are passionate about." },
-        ]
-      }
+      listento: { title: "Learn to listen Arc", completion: "30/100", description: "This arc targets learning to read the room and listen with intention. Reach 70pts to reach the next stage!", quests: [ { title: "Vibe check", points: "+5pts", detail: "User reflects on how someone might have felt during a past conversation." }, { title: "Did I go too fast?", points: "+4pts", detail: "User wonders if they overwhelmed someone with their energy." }, { title: "Their turn now.", points: "+3pts", detail: "User shifts focus to what the other person might want to say or share." }, { title: "Two-way street.", points: "+3pts", detail: "User identifies a moment when a convo felt one-sided." }, { title: "Listening is love.", points: "+4pts", detail: "User summaries what someone else said." }, ] },
+      excitement: { title: "Excitement Arc", completion: "75/100", description: "This arc focuses on sharing passions and interests without monologue. Reach 100pts to reach the next stage!", quests: [ { title: "So cool, right?", points: "+5pts", detail: "User shares something they're excited about without monologuing." }, { title: "Wanna know more?", points: "+4pts", detail: "User checks in with the bot or someone else before launching into detail." }, { title: "Little sparks.", points: "+3pts", detail: "User celebrates a small joy or quirky interest in relation to Iso's conversation." }, { title: "Tell me yours!", points: "+3pts", detail: "User asks about someone else's interests or joys." }, { title: "Shared hype.", points: "+4pts", detail: "User finds overlap between their passion and someone else's world." }, ] },
+      deepconversation: { title: "Deep conversation Arc", completion: "25/100", description: "This arc focuses on identifying mutual or rising interest before sharing meaningful info. Reach 50pts to reach the next stage!", quests: [ { title: "Oops, that was a lot.", points: "+5pts", detail: "User acknowledges they may have over-explained something." }, { title: "Still proud.", points: "+4pts", detail: "User practices a scenario where Iso is not interested in their enthusiasm." }, { title: "Pause + play.", points: "+3pts", detail: "User practices pausing mid-conversation to check in with the other side." }, { title: "Not everyone gets it.", points: "+3pts", detail: "User talks about a time someone didn't 'get' their passion and accepts it." }, { title: "Bright, not blinding.", points: "+4pts", detail: "User finds a way to express themselves that's both joyful and mindful." }, ] },
+      connection: { title: "Connection arc", completion: "43/100", description: "This arc focuses on building meaningful relationships through sharing excitement & passion. Reach 50pts to reach the next stage!", quests: [ { title: "Tell me what you love.", points: "+5pts", detail: "User expresses curiosity in someone else's hobby or passion." }, { title: "Ohhh, I see it now.", points: "+4pts", detail: "User demonstrates understanding of how someone else feels." }, { title: "Not just noise.", points: "+3pts", detail: "User reflects on something a friend said that stuck with them." }, { title: "Cheer squad.", points: "+3pts", detail: "User affirms or hypes someone else up genuinely." }, { title: "The real convo.", points: "+4pts", detail: "User connects with the same level of enthusiasm on a matching topic they are passionate about." }, ] }
     }
   }
 };
