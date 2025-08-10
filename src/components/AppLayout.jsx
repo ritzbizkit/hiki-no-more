@@ -1,15 +1,22 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import BottomNavBar from './BottomNavBar.jsx';
+import { Outlet, useLocation } from 'react-router-dom';
+import BottomNavBar from './BottomNavBar';
 
 const AppLayout = () => {
+  const location = useLocation();
+  const showNavBar = ['/chat', '/quests', '/check-in', '/profile'].includes(location.pathname);
+
   return (
-    // The background is now a light gray
-    <div className="max-w-md mx-auto h-screen bg-gray-50">
-      <main className="pb-24"> {/* Extra padding-bottom for nav bar */}
-        <Outlet /> {/* Child pages will be rendered here */}
-      </main>
-      <BottomNavBar />
+    <div className="flex justify-center h-screen bg-gray-200">
+      <div className="relative w-full max-w-sm bg-white shadow-xl flex flex-col">
+        {/* This div contains the main content of your app and handles the scrolling */}
+        <div className="flex-1 overflow-y-auto">
+          <Outlet />
+        </div>
+        
+        {/* The BottomNavBar is now conditionally rendered */}
+        {showNavBar && <BottomNavBar />}
+      </div>
     </div>
   );
 };

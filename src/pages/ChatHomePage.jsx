@@ -1,48 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ChatListItem from '../components/ChatListItem.jsx';
-import { useKeyboard } from '../context/KeyboardContext.jsx';
-import { useBuddy } from '../context/BuddyContext.jsx'; // Import the buddy hook
+import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useBuddy } from '../context/BuddyContext';
+import { useTheme } from '../components/ThemeProvider';
+import TutorialOverlay from '../components/TutorialOverlay.jsx';
 
-const ChatHomePage = ({ activeChats }) => { // activeChats is for group chats
-  const { showKeyboard, hideKeyboard } = useKeyboard();
-  const { chosenBuddy } = useBuddy(); // Get the chosen buddy from global state
-
-  // Start with a chat for the chosen buddy, if one exists
-  const buddyChat = chosenBuddy ? [{
-    name: chosenBuddy.name,
-    message: `Hi I'm ${chosenBuddy.name}! Your dedicated buddy!`,
-    avatarSrc: chosenBuddy.imageSrc,
-    path: `/chat/${chosenBuddy.name.toLowerCase()}`
-  }] : [];
+const ChatHomePage = ({ activeChats }) => {
+  // Get the chosen buddy's details and the theme
+  const { buddyDetails } = useBuddy();
+  const { theme } = useTheme();
   
-  // Combine the main buddy chat with any other active group chats
-  const allChats = [...buddyChat, ...activeChats.filter(chat => chat.name !== chosenBuddy?.name)];
+  const [searchParams, setSearchParams] = useSearchParams();
+  const showTutorial = searchParams.get('showTutorial') === 'true';
+
+  // --- THIS IS THE FIX ---
+  // If no buddy has been chosen yet, show a helpful message instead of crashing.
+  if (!buddyDetails) {
+    return (
+      <div className="p-4 text-center flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-bold mb-4">Welcome to Your Chats!</h1>
+        <p className="mb-6 max-w-xs">To start chatting with your buddy, you first need to find out who suits you best.</p>
+        <Link to="/" className="px-6 py-3 bg-blue-500 text-white font-bold rounded-full shadow-lg">
+          Take the Persona Quiz
+        </Link>
+      </div>
+    );
+  }
+  // --- END OF FIX ---
 
   return (
-    <div className="h-screen flex flex-col" style={{ backgroundColor: '#FBFBFE' }}>
-      <div className="p-4 pt-6 bg-blue-100 shadow-sm">
-        <h1 className="text-2xl font-bold text-center text-gray-800">Chats</h1>
-        <input 
-          type="text" 
-          placeholder="Search" 
-          className="input input-bordered w-full rounded-lg bg-white mt-4 placeholder:text-gray-500"
-          onFocus={showKeyboard}
-          onBlur={hideKeyboard}
+    <div className={`p-4 min-h-screen ${theme.background}`}>
+      <div className="bg-white/50 p-4 rounded-xl text-center mb-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-gray-800">Chats</h1>
+      </div>
+
+      {/* Main Buddy Chat Card */}
+      <Link to={`/chat/${buddyDetails.name.toLowerCase()}`}>
+        <div className="flex items-center gap-4 mb-8 p-4 bg-white/80 rounded-xl shadow-lg hover:scale-105 transition-transform">
+          <img src={buddyDetails.image} alt={buddyDetails.name} className="w-20 h-20" />
+          <div className="text-left text-gray-800">
+            <p className="font-bold text-xl">{buddyDetails.name}</p>
+            <p className="text-sm">This is the beginning of your journey with {buddyDetails.name}!</p>
+          </div>
+        </div>
+      </Link>
+
+      <div className="p-4 bg-white/50 rounded-xl">
+        <Link to="/connect" className="text-blue-600 font-bold">
+          + Connect with others!
+        </Link>
+      </div>
+      
+      {showTutorial && (
+        <TutorialOverlay
+          onClose={() => setSearchParams({})}
         />
-      </div>
-      <div className="flex-grow overflow-y-auto">
-        {allChats.map((chat, index) => (
-          <Link to={chat.path} key={index}>
-            <ChatListItem 
-              name={chat.name}
-              message={chat.message}
-              avatarSrc={chat.avatarSrc}
-            />
-          </Link>
-        ))}
-        <Link to="/connect" className="block p-4 text-center text-blue-500 font-semibold hover:bg-gray-100">+ Connect with others!</Link>
-      </div>
+      )}
     </div>
   );
 };

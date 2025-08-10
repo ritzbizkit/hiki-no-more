@@ -1,11 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   body {
     @apply font-sans text-gray-800;
+  }
+  :root, .theme-nervy {
+    --theme-primary: #A8D1F5;
+    --theme-secondary: #E8F1FA;
+    --theme-header: #E0F2FE;
+    --theme-text: black;
+  }
+  .theme-obli {
+    --theme-primary: #FECACA;
+    --theme-secondary: #FEE2E2;
+    --theme-header: #FFEDD5;
+    --theme-text: black;
+  }
+  .theme-iso {
+    --theme-primary: #C4B5FD;
+    --theme-secondary: #DDD6FE;
+    --theme-header: #EBEBFF;
+    --theme-text: black;
+  }
+  .theme-avoi {
+    --theme-primary: #FBCFE8;
+    --theme-secondary: #FCE7F3;
+    --theme-header: #FDF2F8;
+    --theme-text: black;
   }
 }

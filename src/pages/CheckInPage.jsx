@@ -1,88 +1,82 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeftIcon, Cog6ToothIcon } from '@heroicons/react/24/solid';
-
-const MoodButton = ({ mood, selectedMood, setSelectedMood }) => {
-  const isSelected = selectedMood === mood.name;
-  return (
-    <button 
-      onClick={() => setSelectedMood(mood.name)}
-      className={`text-5xl p-2 rounded-full transition-transform duration-200 ${isSelected ? 'scale-125' : 'opacity-50 hover:opacity-100'}`}
-    >
-      {mood.emoji}
-    </button>
-  );
-};
+import { useTheme } from '../components/ThemeProvider';
+import Card from '../components/Card';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 const CheckInPage = () => {
-  // State for the sliders and mood
-  const [feelValue, setFeelValue] = useState(50);
-  const [worryValue, setWorryValue] = useState(50);
-  const [frontValue, setFrontValue] = useState(50);
-  const [selectedMood, setSelectedMood] = useState('neutral');
+  const { theme } = useTheme();
 
-  const moods = [
-    { name: 'happy', emoji: '🙂' },
-    { name: 'neutral', emoji: '😐' },
-    { name: 'sad', emoji: '🙁' },
+  const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  
+  const calendarDays = [
+    { day: 1, mood: 'pink' }, { day: 2, mood: 'pink' }, { day: 3, mood: 'pink' },
+    { day: 4, mood: 'pink' }, { day: 5, mood: 'pink' }, { day: 6, mood: 'yellow' },
+    { day: 7, mood: 'yellow' }, { day: 8, mood: 'yellow' }, { day: 9, mood: 'yellow' },
+    { day: 10, mood: 'yellow' }, { day: 11, mood: 'yellow' }, { day: 12, mood: 'green' },
+    { day: 13, mood: 'green' }, { day: 14, mood: 'green' }, { day: 15, mood: 'green' },
+    { day: 16, mood: 'green' }, { day: 17, mood: 'none' }, { day: 18, mood: 'none' },
+    { day: 19, mood: 'none' }, { day: 20, mood: 'none' }, { day: 21, mood: 'none' },
+    { day: 22, mood: 'none' }, { day: 23, mood: 'none' }, { day: 24, mood: 'none' },
+    { day: 25, mood: 'none' }, { day: 26, mood: 'none' }, { day: 27, mood: 'none' },
+    { day: 28, mood: 'none' }, { day: 29, mood: 'none' }, { day: 30, mood: 'none' },
+    { day: 31, mood: 'none' },
   ];
 
+  const moodColors = {
+    pink: 'bg-pink-300 text-white',
+    yellow: 'bg-yellow-300 text-white',
+    green: 'bg-green-300 text-white',
+    none: 'text-gray-700'
+  };
+
   return (
-    <div style={{ backgroundColor: '#FBFBFE' }} className="p-4 min-h-screen">
-      {/* Header */}
-      <div className="bg-blue-100 p-4 rounded-xl flex items-center justify-between relative mb-6 shadow-sm">
-        <Link to="/diary">
-          <ChevronLeftIcon className="w-8 h-8 text-gray-800" />
-        </Link>
-        <h1 className="text-2xl font-bold text-gray-800">Check-In</h1>
-        <button>
-          <Cog6ToothIcon className="w-8 h-8 text-gray-800" />
-        </button>
+    <div className={`p-4 min-h-screen ${theme.background}`}>
+      {/* Themed Header */}
+      <Card className={`text-center mb-6 !p-3 ${theme.primary}`}>
+        <div className="flex items-center">
+          {/* UPDATED: Changed theme.accentText to theme.text for better contrast */}
+          <Link to="/quests" className={`w-1/3 text-left ${theme.text}`}>
+            <ChevronLeftIcon className="w-8 h-8" />
+          </Link>
+          {/* UPDATED: Changed theme.accentText to theme.text for better contrast */}
+          <h1 className={`w-1/3 text-2xl font-bold ${theme.text}`}>Calendar</h1>
+          <div className="w-1/3"></div>
+        </div>
+      </Card>
+      
+      {/* Month Navigator */}
+      <div className="flex justify-between items-center mb-4 px-2">
+        <h2 className={`font-bold text-lg ${theme.text}`}>June 2025</h2>
+        <div className="flex gap-4">
+          <ChevronLeftIcon className={`w-6 h-6 ${theme.text}`} />
+          <ChevronRightIcon className={`w-6 h-6 ${theme.text}`} />
+        </div>
+      </div>
+      
+      {/* Calendar Grid */}
+      <div className="grid grid-cols-7 gap-y-2 place-items-center">
+        {daysOfWeek.map((day, i) => <div key={i} className={`font-bold ${theme.text}`}>{day}</div>)}
+        {calendarDays.map(({day, mood}) => (
+          <div key={day} className={`w-10 h-10 flex items-center justify-center rounded-full font-semibold ${moodColors[mood]}`}>
+            {day}
+          </div>
+        ))}
       </div>
 
-      {/* Questions Card */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm space-y-6">
-        {/* Interaction Feel Slider */}
-        <div>
-          <label className="label justify-start font-semibold text-gray-700">How did social interactions make you feel today?</label>
-          <input type="range" min={0} max="100" value={feelValue} onChange={(e) => setFeelValue(e.target.value)} className="range range-primary" />
-          <div className="w-full flex justify-between text-xs px-2">
-            <span>Bad</span>
-            <span>Good</span>
-          </div>
-        </div>
-        {/* Worry Slider */}
-        <div>
-          <label className="label justify-start font-semibold text-gray-700">How much did you worry about being judged?</label>
-          <input type="range" min={0} max="100" value={worryValue} onChange={(e) => setWorryValue(e.target.value)} className="range range-primary" />
-          <div className="w-full flex justify-between text-xs px-2">
-            <span>Alot</span>
-            <span>Not at all</span>
-          </div>
-        </div>
-        {/* Front Slider */}
-        <div>
-          <label className="label justify-start font-semibold text-gray-700">How much were you putting on a front today?</label>
-          <input type="range" min={0} max="100" value={frontValue} onChange={(e) => setFrontValue(e.target.value)} className="range range-primary" />
-          <div className="w-full flex justify-between text-xs px-2">
-            <span>Alot</span>
-            <span>Not at all</span>
-          </div>
-        </div>
-
-        <div className="border-t pt-6">
-          <label className="label justify-center font-semibold text-gray-700">Overall Mood</label>
-          <div className="flex justify-around items-center mt-4">
-            {moods.map(mood => (
-              <MoodButton key={mood.name} mood={mood} selectedMood={selectedMood} setSelectedMood={setSelectedMood} />
-            ))}
-          </div>
-        </div>
-
-        <button className="btn btn-lg w-full rounded-2xl border-none text-black mt-6" style={{ backgroundColor: '#A8D1F5' }}>
-          Submit
-        </button>
+      {/* Streak and Check-in Button */}
+      <div className="text-center my-6">
+        <h3 className={`text-3xl font-bold ${theme.text}`}>30 Day</h3>
+        <p className={`text-lg ${theme.text}`}>check-in streak</p>
       </div>
+
+      <Link to="/check-in/new">
+        <Card className="text-center !py-4">
+          <span className={`text-xl font-bold ${theme.text}`}>
+            + Check-in today!
+          </span>
+        </Card>
+      </Link>
     </div>
   );
 };
