@@ -6,6 +6,230 @@ import { getQuestRoute } from '../questRoutes';
 import { useTheme } from '../components/ThemeProvider';
 import { useBuddy } from '../context/BuddyContext';
 
+// Header component with back navigation
+const QuestHeader = ({ theme, onBackClick }) => (
+  <div className={`flex items-center p-4 shadow-md ${theme.primary}`}>
+    <span
+      className={`text-2xl font-bold cursor-pointer ${theme.accentText}`}
+      onClick={onBackClick}
+    >
+      &larr;
+    </span>
+  </div>
+);
+
+// Quest card layout component
+const QuestCard = ({ theme, children }) => (
+  <div className="flex-1 flex items-center justify-center p-4">
+    <div className={`p-8 rounded-xl shadow-lg w-full max-w-sm text-center ${theme.secondary}`}>
+      {children}
+    </div>
+  </div>
+);
+
+// Avatar component
+const QuestAvatar = ({ buddyDetails, show }) => (
+  show && buddyDetails && (
+    <img 
+      src={buddyDetails.image} 
+      alt={buddyDetails.name} 
+      className="w-16 h-16 mx-auto mb-4" 
+    />
+  )
+);
+
+// Quest content component
+const QuestContent = ({ theme, title, content }) => (
+  <>
+    {title && (
+      <p className={`text-lg font-semibold mb-2 ${theme.text}`}>
+        {title}
+      </p>
+    )}
+    {content && (
+      <p className={`text-sm mb-4 ${theme.text}`}>
+        {content}
+      </p>
+    )}
+  </>
+);
+
+// Model reply section component
+const ModelReplySection = ({ theme, modelReply, isLoading }) => (
+  <div className={`text-sm mb-4 p-3 bg-gray-100 rounded ${theme.text}`}>
+    {isLoading ? 'Loading...' : (modelReply || 'Loading AI response...')}
+  </div>
+);
+
+// User input section component
+const UserInputSection = ({ userInput, onChange, onKeyPress, isLoading }) => (
+  <div className="mt-4">
+    <textarea
+      value={userInput}
+      onChange={onChange}
+      onKeyPress={onKeyPress}
+      placeholder="Type out your response..."
+      className="w-full p-2 rounded-md border text-gray-700"
+      rows="5"
+      disabled={isLoading}
+    />
+  </div>
+);
+
+// Navigation button component
+const NavigationButton = ({ theme, onClick, isLoading, icon, text, disabled }) => {
+  if (disabled) {
+    return (
+      <div className={`block mt-8 text-center text-sm ${theme.text}`}>
+        {text}
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className={`block mt-8 text-center text-sm ${theme.text}`}>
+        <span className="text-2xl block mb-1">⏳</span>
+        Loading...
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      className={`block mt-8 text-center text-sm ${theme.text} mx-auto cursor-pointer`}
+    >
+      <span className="text-2xl block mb-1">{icon}</span>
+      {text}
+    </button>
+  );
+};
+
+// Static quest component (for quests without backend)
+const StaticQuest = ({ theme, buddyDetails, currentQuest, questId, buddyName, arcName, navigate }) => (
+  <>
+    {/* Warning message */}
+    <div className="mb-4 p-2 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded text-xs">
+      No backend route configured for this quest.
+    </div>
+
+    <QuestAvatar buddyDetails={buddyDetails} show={true} />
+
+    {currentQuest ? (
+      <>
+        <QuestContent 
+          theme={theme}
+          title={currentQuest.title}
+          content={currentQuest.description || 'Static content - no dynamic interaction available.'}
+        />
+        
+        <NavigationButton
+          theme={theme}
+          onClick={() => {
+            QuestUtils.markQuestCompleted(buddyName, arcName, questId);
+            navigate(`/quests/${buddyName}/${arcName}`);
+          }}
+          icon="✓"
+          text="mark complete!"
+        />
+      </>
+    ) : (
+      <QuestContent 
+        theme={theme}
+        title="Quest Not Found"
+        content="No quest data available for this route."
+      />
+    )}
+  </>
+);
+
+// Dynamic quest component (for quests with backend)
+const DynamicQuest = ({ 
+  theme, 
+  buddyDetails, 
+  displayData, 
+  userInput, 
+  setUserInput, 
+  modelReplies, 
+  currentStageId, 
+  isLoading, 
+  isModelReplyLoading, 
+  canProceed, 
+  isQuestCompleted, 
+  proceedToNextStage, 
+  handleKeyPress, 
+  error 
+}) => (
+  <>
+    {/* Error message for backend issues */}
+    {error && (
+      <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded text-xs">
+        Backend error: {error}
+      </div>
+    )}
+
+    {/* Loading state */}
+    {(isLoading || (!displayData && !error)) && (
+      <div className={`text-sm mb-4 ${theme.text}`}>
+        {isLoading ? 'Loading...' : 'Initializing quest...'}
+      </div>
+    )}
+    
+    <QuestAvatar buddyDetails={buddyDetails} show={displayData?.showAvatarOnCard} />
+
+    <QuestContent 
+      theme={theme}
+      title={displayData?.title}
+      content={displayData?.content}
+    />
+
+    {/* Model reply section */}
+    {displayData?.hasModelReply && (
+      <ModelReplySection
+        theme={theme}
+        modelReply={modelReplies[currentStageId]}
+        isLoading={isModelReplyLoading}
+      />
+    )}
+
+    {/* User Input Section */}
+    {displayData?.hasUserInput && (
+      <UserInputSection
+        userInput={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        onKeyPress={handleKeyPress}
+        isLoading={isLoading}
+      />
+    )}
+
+    {/* Navigation */}
+    {isQuestCompleted ? (
+      <NavigationButton
+        theme={theme}
+        disabled={true}
+        text="Quest completed! 🎉"
+      />
+    ) : displayData ? (
+      !canProceed ? (
+        <NavigationButton
+          theme={theme}
+          disabled={true}
+          text="Please enter your response above"
+        />
+      ) : (
+        <NavigationButton
+          theme={theme}
+          onClick={proceedToNextStage}
+          isLoading={isLoading || isModelReplyLoading}
+          icon="↑"
+          text="continue!"
+        />
+      )
+    ) : null}
+  </>
+);
+
 const QuestCardPage = () => {
   const { buddyName, arcName, questId } = useParams();
   const navigate = useNavigate();
@@ -120,23 +344,6 @@ const QuestCardPage = () => {
     }
   }, [currentStageId, currentStage?.has_model_reply, modelReplies, isInitialized]);
 
-  // Error state - still show UI but with error message
-  if (!quizRoute) {
-    return (
-      <div className="p-4 text-center">
-        <div className="mb-4 p-2 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded text-xs">
-          No backend route configured for this quest.
-        </div>
-        {currentQuest && (
-          <div>
-            <h3 className="text-lg font-semibold">{currentQuest.title}</h3>
-            <p className="text-sm text-gray-600">Static content available</p>
-          </div>
-        )}
-      </div>
-    );
-  }
-
   // Determine what content to show
   const displayData = currentStage ? {
     title: currentStage.title,
@@ -163,115 +370,43 @@ const QuestCardPage = () => {
     }
   };
 
+  // Back navigation handler
+  const handleBackClick = () => navigate(`/quests/${buddyName}/${arcName}`);
+
   return (
     <div className={`flex flex-col h-screen ${theme.background}`}>
-      <div className={`flex items-center p-4 shadow-md ${theme.primary}`}>
-        <span
-          className={`text-2xl font-bold cursor-pointer ${theme.accentText}`}
-          onClick={() => navigate(`/quests/${buddyName}/${arcName}`)}
-        >
-          &larr;
-        </span>
-      </div>
-
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className={`p-8 rounded-xl shadow-lg w-full max-w-sm text-center ${theme.secondary}`}>
-          
-          {/* Error message for backend issues */}
-          {error && (
-            <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded text-xs">
-              Backend error: {error}
-            </div>
-          )}
-
-          {/* Loading state */}
-          {(isLoading || (!isInitialized && !error)) && (
-            <div className={`text-sm mb-4 ${theme.text}`}>
-              {isLoading ? 'Loading...' : 'Initializing quest...'}
-            </div>
-          )}
-          
-          {/* Avatar */}
-          {displayData?.showAvatarOnCard && buddyDetails && (
-            <img 
-              src={buddyDetails.image} 
-              alt={buddyDetails.name} 
-              className="w-16 h-16 mx-auto mb-4" 
-            />
-          )}
-
-          {/* Title */}
-          {displayData?.title && (
-            <p className={`text-lg font-semibold mb-2 ${theme.text}`}>
-              {displayData.title}
-            </p>
-          )}
-
-          {/* Content */}
-          {displayData?.content && (
-            <p className={`text-sm mb-4 ${theme.text}`}>
-              {displayData.content}
-            </p>
-          )}
-
-          {/* Model reply section - show for stages that have model replies */}
-          {displayData?.hasModelReply && (
-            <div className={`text-sm mb-4 p-3 bg-gray-100 rounded ${theme.text}`}>
-              {isModelReplyLoading ? (
-                'Loading...'
-              ) : (
-                modelReplies[currentStageId] || 'Loading AI response...'
-              )}
-            </div>
-          )}
-
-          {/* User Input Section */}
-          {displayData?.hasUserInput && (
-            <div className="mt-4">
-              <textarea
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type out your response..."
-                className="w-full p-2 rounded-md border text-gray-700"
-                rows="5"
-                disabled={isLoading}
-              />
-            </div>
-          )}
-
-          {/* Navigation */}
-          {isQuestCompleted ? (
-            <div className={`block mt-8 text-center text-sm ${theme.text}`}>
-              Quest completed! 🎉
-            </div>
-          ) : isInitialized && displayData ? (
-            !canProceed ? (
-              <div className={`block mt-8 text-center text-sm ${theme.text}`}>
-                Please enter your response above
-              </div>
-            ) : isLoading ? (
-              <div className={`block mt-8 text-center text-sm ${theme.text}`}>
-                <span className="text-2xl block mb-1">⏳</span>
-                Loading...
-              </div>
-            ) : isModelReplyLoading ? (
-              <div className={`block mt-8 text-center text-sm ${theme.text}`}>
-                <span className="text-2xl block mb-1">⏳</span>
-                Generating response...
-              </div>
-            ) : (
-              <button
-                onClick={proceedToNextStage}
-                className={`block mt-8 text-center text-sm ${theme.text} mx-auto cursor-pointer`}
-              >
-                <span className="text-2xl block mb-1">↑</span>
-                continue!
-              </button>
-            )
-          ) : null}
-        </div>
-      </div>
+      <QuestHeader theme={theme} onBackClick={handleBackClick} />
+      
+      <QuestCard theme={theme}>
+        {!quizRoute ? (
+          <StaticQuest 
+            theme={theme}
+            buddyDetails={buddyDetails}
+            currentQuest={currentQuest}
+            questId={questId}
+            buddyName={buddyName}
+            arcName={arcName}
+            navigate={navigate}
+          />
+        ) : (
+          <DynamicQuest 
+            theme={theme}
+            buddyDetails={buddyDetails}
+            displayData={displayData}
+            userInput={userInput}
+            setUserInput={setUserInput}
+            modelReplies={modelReplies}
+            currentStageId={currentStageId}
+            isLoading={isLoading}
+            isModelReplyLoading={isModelReplyLoading}
+            canProceed={canProceed}
+            isQuestCompleted={isQuestCompleted}
+            proceedToNextStage={proceedToNextStage}
+            handleKeyPress={handleKeyPress}
+            error={error}
+          />
+        )}
+      </QuestCard>
     </div>
   );
 };
