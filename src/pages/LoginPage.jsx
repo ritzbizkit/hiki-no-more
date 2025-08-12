@@ -1,64 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Import useAuth hook
+import { useTheme } from '../components/ThemeProvider';
+// The following line has been removed to fix the error:
+// import { tutorialStepsLoginPage } from '../data.js'; 
 
 const LoginPage = () => {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Log In</h1>
-        <p className="mt-2 text-gray-600">Welcome back!</p>
-      </div>
-      <div className="w-full max-w-sm bg-white p-8 rounded-xl shadow-lg">
-        <form className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email Address</label>
-            <div className="mt-1">
-              <input
-                name="email"
-                type="email"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </div>
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth(); // Access the login function from AuthContext
+  const { theme } = useTheme();
+  const navigate = useNavigate();
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (login(email, password)) {
+      navigate('/chat');
+    } else {
+      alert('Login failed!');
+    }
+  };
+
+  return (
+    <div className={`min-h-screen flex items-center justify-center p-4 ${theme.background}`}>
+      <div className={`w-full max-w-sm p-8 space-y-6 bg-white rounded-xl shadow-lg`}>
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-800">Login</h1>
+          <p className="mt-2 text-gray-500">Sign in to your account</p>
+        </div>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
-            <div className="mt-1">
-              <input
-                name="password"
-                type="password"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+            />
           </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                Forgot your password?
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Log in
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"
+          >
+            Log in
+          </button>
         </form>
-        <div className="mt-6 text-center text-sm">
-          <p>
-            Don't have an account?{' '}
-            <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
-              Sign up
-            </Link>
-          </p>
-        </div>
       </div>
     </div>
   );

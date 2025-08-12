@@ -8,6 +8,8 @@ import { ChatProvider } from './context/ChatContext.jsx';
 import MobileLayout from './components/MobileLayout.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import ThemeProvider from './components/ThemeProvider.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 // Pages
 import LandingPage from './pages/LandingPage.jsx';
@@ -22,7 +24,7 @@ import QuestJourneyPage from './pages/QuestJourneyPage.jsx';
 import QuestDetailPage from './pages/QuestDetailPage.jsx';
 import QuestCardPage from './pages/QuestCardPage.jsx';
 import ChatHomePage from './pages/ChatHomePage.jsx';
-import ChatPage from './pages/ChatPage.jsx'; // Import the new ChatPage component
+import ChatPage from './pages/ChatPage.jsx';
 import CheckInPage from './pages/CheckInPage.jsx';
 import CheckInFormPage from './pages/CheckInFormPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -42,36 +44,40 @@ function App() {
         <ChatProvider>
           <MobileLayout>
             <BrowserRouter>
-              <ThemeProvider>
-                <Routes>
-                  {/* Standalone Routes */}
-                  <Route path="/" element={<LandingPage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/signup" element={<SignUpPage />} />
-                  <Route path="/profile-setup-1" element={<ProfileSetup1Page />} />
-                  <Route path="/profile-setup-2" element={<ProfileSetup2Page />} />
-                  <Route path="/quiz-intro" element={<QuizIntroPage />} />
-                  <Route path="/quiz/:questionId" element={<QuizQuestionPage answers={answers} setAnswers={setAnswers} />} />
-                  <Route path="/results" element={<ResultsPage answers={answers} />} />
-                  <Route path="/quests/:buddyName/:arcName/:questId" element={<QuestCardPage />} />
-                  <Route path="/group-chat/:participants" element={<GroupChatPage />} />
-                  <Route path="/live-mode" element={<LiveModePage />} />
-                  <Route path="/tutorial" element={<TutorialPage />} />
-                  
-                  {/* Main App Routes */}
-                  <Route element={<AppLayout />}>
-                    <Route path="/chat" element={<ChatHomePage activeChats={activeChats} />} />
-                    <Route path="/chat/:avatarName" element={<ChatPage />} />
-                    <Route path="/quests" element={<QuestJourneyPage />} />
-                    <Route path="/quests/:buddyName/:arcName" element={<QuestDetailPage />} />
-                    <Route path="/check-in" element={<CheckInPage />} />
-                    <Route path="/check-in/new" element={<CheckInFormPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/settings" element={<SettingsPage />} />
-                    <Route path="/connect" element={<ConnectPage setActiveChats={setActiveChats} />} />
-                  </Route>
-                </Routes>
-              </ThemeProvider>
+              <AuthProvider>
+                <ThemeProvider>
+                  <Routes>
+                    {/* Standalone Routes */}
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignUpPage />} />
+                    <Route path="/profile-setup-1" element={<ProfileSetup1Page />} />
+                    <Route path="/profile-setup-2" element={<ProfileSetup2Page />} />
+                    <Route path="/quiz-intro" element={<QuizIntroPage />} />
+                    <Route path="/quiz/:questionId" element={<QuizQuestionPage answers={answers} setAnswers={setAnswers} />} />
+                    <Route path="/results" element={<ResultsPage answers={answers} />} />
+
+                    {/* Protected Routes */}
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="/quests/:buddyName/:arcName/:questId" element={<QuestCardPage />} />
+                      <Route path="/group-chat/:participants" element={<GroupChatPage />} />
+                      <Route path="/live-mode" element={<LiveModePage />} />
+                      <Route path="/tutorial" element={<TutorialPage />} />
+                      <Route element={<AppLayout />}>
+                        <Route path="/chat" element={<ChatHomePage activeChats={activeChats} />} />
+                        <Route path="/chat/:avatarName" element={<ChatPage />} />
+                        <Route path="/quests" element={<QuestJourneyPage />} />
+                        <Route path="/quests/:buddyName/:arcName" element={<QuestDetailPage />} />
+                        <Route path="/check-in" element={<CheckInPage />} />
+                        <Route path="/check-in/new" element={<CheckInFormPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="/connect" element={<ConnectPage activeChats={activeChats} setActiveChats={setActiveChats} />} />
+                      </Route>
+                    </Route>
+                  </Routes>
+                </ThemeProvider>
+              </AuthProvider>
             </BrowserRouter>
           </MobileLayout>
         </ChatProvider>

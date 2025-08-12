@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Steps } from 'intro.js-react';
 import { useBuddy } from '../context/BuddyContext';
 import { useTheme } from '../components/ThemeProvider';
-import { questData } from '../data';
+import { questData, tutorialStepsQuests } from '../data';
 import Card from '../components/Card';
 
 const ArcCard = ({ arcKey, title, buddyName }) => {
@@ -29,6 +30,28 @@ const QuestJourneyPage = () => {
   const { buddyDetails } = useBuddy();
   const { theme } = useTheme();
 
+  const [stepsEnabled, setStepsEnabled] = useState(false);
+
+  useEffect(() => {
+    const tutorialCompleted = localStorage.getItem('questsTutorialCompleted');
+    if (tutorialCompleted !== 'true') {
+      setStepsEnabled(true);
+    }
+  }, []);
+
+  const onTutorialComplete = () => {
+    localStorage.setItem('questsTutorialCompleted', 'true');
+    setStepsEnabled(false);
+  };
+
+  const onExit = () => {
+    setStepsEnabled(false);
+  };
+
+  const replayTutorial = () => {
+    setStepsEnabled(true);
+  };
+
   if (!buddyDetails) {
     return (
       <div className="p-4 text-center">
@@ -47,6 +70,13 @@ const QuestJourneyPage = () => {
 
   return (
     <div className={`p-4 min-h-screen ${theme.background}`}>
+      <Steps
+        enabled={stepsEnabled}
+        steps={tutorialStepsQuests}
+        initialStep={0}
+        onExit={onExit}
+        onComplete={onTutorialComplete}
+      />
       <Card className="text-center mb-6">
         <h1 className={`text-2xl font-bold ${theme.text}`}>Quest Journey</h1>
       </Card>
@@ -59,7 +89,7 @@ const QuestJourneyPage = () => {
         </div>
       </Card>
 
-      <div className="space-y-4">
+      <div id="quest-list" className="space-y-4">
         {arcKeys.map(key => (
           <ArcCard 
             key={key}
@@ -69,10 +99,11 @@ const QuestJourneyPage = () => {
           />
         ))}
       </div>
+      <button onClick={replayTutorial} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg">
+        Play Tutorial
+      </button>
     </div>
   );
 };
 
-// --- THIS IS THE FIX ---
-// This line makes the component available to be imported by other files like App.jsx.
 export default QuestJourneyPage;

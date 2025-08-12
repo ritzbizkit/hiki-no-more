@@ -1,21 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserCircleIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../components/ThemeProvider';
 import { useBuddy } from '../context/BuddyContext';
+import { useAuth } from '../context/AuthContext';
 
 // Define the sub-component ONCE at the top
-const ProfileMenuItem = ({ to, label, isSignOut = false }) => {
+const ProfileMenuItem = ({ to, label, isSignOut = false, onClick }) => {
   const textColor = isSignOut ? 'text-red-500' : 'text-gray-700';
   const content = (
     <div className="flex justify-between items-center w-full p-4">
       <span className={`text-lg font-medium ${textColor}`}>{label}</span>
-      <ChevronRightIcon className="w-6 h-6 text-gray-400" />
+      {!isSignOut && <ChevronRightIcon className="w-6 h-6 text-gray-400" />}
     </div>
   );
+
   if (isSignOut) {
-    return <button className="w-full text-left hover:bg-gray-50">{content}</button>;
+    return (
+      <button onClick={onClick} className="w-full text-left hover:bg-gray-50">
+        {content}
+      </button>
+    );
   }
+  
   return (
     <Link to={to} className="w-full text-left hover:bg-gray-50 block border-b">
       {content}
@@ -25,8 +32,10 @@ const ProfileMenuItem = ({ to, label, isSignOut = false }) => {
 
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const { buddyDetails } = useBuddy();
+  const { logout } = useAuth();
 
   return (
     <div className={`p-4 min-h-screen ${theme.background}`}>
@@ -47,12 +56,11 @@ const ProfilePage = () => {
 
         {/* Menu List */}
         <div>
-          <ProfileMenuItem to="/results" label="Change Buddy" />
+          {/* Change Buddy and Rewatch Tutorial have been removed */}
           <ProfileMenuItem to="/profile-setup-2" label="Edit profile" />
           <ProfileMenuItem to="/settings" label="Settings" />
-          <ProfileMenuItem to="/chat?showTutorial=true" label="Rewatch Tutorial" />
           <ProfileMenuItem to="/quiz-intro" label="Retake Persona Test" />
-          <ProfileMenuItem to="/sign-out" label="Sign out" isSignOut={true} />
+          <ProfileMenuItem label="Sign out" isSignOut={true} onClick={logout} />
         </div>
       </div>
     </div>

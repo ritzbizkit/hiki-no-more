@@ -1,10 +1,11 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Steps } from 'intro.js-react';
 import { useBuddy } from '../context/BuddyContext';
 import { useTheme } from '../components/ThemeProvider';
-import { resultsData } from '../data.js';
+import { resultsData, tutorialStepsChatPage } from '../data.js';
 import Card from '../components/Card';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 const ChatPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,28 @@ const ChatPage = () => {
   const { theme } = useTheme();
 
   const buddyDetails = resultsData[chosenBuddy];
+  
+  const [stepsEnabled, setStepsEnabled] = useState(false);
+
+  useEffect(() => {
+    const tutorialCompleted = localStorage.getItem('chatPageTutorialCompleted');
+    if (tutorialCompleted !== 'true') {
+      setStepsEnabled(true);
+    }
+  }, []);
+
+  const onTutorialComplete = () => {
+    localStorage.setItem('chatPageTutorialCompleted', 'true');
+    setStepsEnabled(false);
+  };
+
+  const onExit = () => {
+    setStepsEnabled(false);
+  };
+
+  const replayTutorial = () => {
+    setStepsEnabled(true);
+  };
 
   if (!buddyDetails) {
     return <div>No active buddy found. Please go back and select a buddy.</div>;
@@ -21,9 +44,16 @@ const ChatPage = () => {
   const dummyMessage = { sender: 'buddy', text: "Hey! I haven't heard from you in awhile. Everything ok?" };
 
   return (
-    <div className={`flex flex-col h-screen ${theme.background}`}>
+    <div className={`flex flex-col h-screen ${theme.background} relative`}>
+      <Steps
+        enabled={stepsEnabled}
+        steps={tutorialStepsChatPage}
+        initialStep={0}
+        onExit={onExit}
+        onComplete={onTutorialComplete}
+      />
       {/* Header, using the Card component and styled like GroupChatPage */}
-      <Card className={`text-center relative !rounded-t-none !rounded-b-xl ${theme.primary}`}>
+      <Card id="chat-header" className={`text-center relative !rounded-t-none !rounded-b-xl ${theme.primary}`}>
         <span 
           className={`absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-800 ${theme.text}`}
           onClick={() => navigate(-1)}
@@ -51,9 +81,14 @@ const ChatPage = () => {
       </div>
 
       {/* Text Input */}
-      <div className="p-4 bg-white">
+      <div id="message-input" className="p-4 bg-white">
         <input type="text" placeholder="Type your message..." className="input input-bordered w-full rounded-full bg-gray-100" />
       </div>
+
+      {/* Replay Tutorial Button */}
+      <button onClick={replayTutorial} className="absolute bottom-4 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg">
+        Play Tutorial
+      </button>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import React, { useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { resultsData } from '../data.js';
 
-// Import the hooks we need to save the buddy and get the theme
 import { useBuddy } from '../context/BuddyContext.jsx';
 import { useTheme } from '../components/ThemeProvider.jsx';
+import { useAuth } from '../context/AuthContext.jsx'; // Import the useAuth hook
 
 const ResultsPage = ({ answers }) => {
-  // Get the function to save the chosen buddy from our context
   const { setChosenBuddy } = useBuddy();
+  const { signup } = useAuth(); // Access the signup function from AuthContext
+  const navigate = useNavigate();
 
   const winningPersona = useMemo(() => {
     if (!answers || Object.keys(answers).length === 0) {
@@ -29,18 +30,13 @@ const ResultsPage = ({ answers }) => {
     return winner || 'nervy';
   }, [answers]);
 
-  // --- NEW LOGIC START ---
-  // This hook runs after the winner is calculated.
-  // It tells the rest of the app who the chosen buddy is.
   useEffect(() => {
     if (winningPersona) {
       setChosenBuddy(winningPersona);
     }
   }, [winningPersona, setChosenBuddy]);
   
-  // Get the correct theme based on the now-chosen buddy
   const { theme } = useTheme();
-  // --- NEW LOGIC END ---
 
   const buddy = resultsData[winningPersona];
 
@@ -48,8 +44,13 @@ const ResultsPage = ({ answers }) => {
     return <div className="p-4">Could not determine your buddy. Please try the quiz again.</div>;
   }
 
+  const handleMeetBuddyClick = () => {
+    // Call signup to set the user as logged in before navigating
+    signup('user@example.com', 'password123'); // Use placeholder details for now
+    navigate('/chat');
+  };
+
   return (
-    // UPDATED: The background now comes from our dynamic theme
     <div className={`min-h-screen flex flex-col items-center justify-center text-center p-4 ${theme.background}`}>
       <h1 className="text-xl font-semibold text-white/80 mb-2">You got...</h1>
       <h2 className="text-5xl font-bold text-white mb-4">{buddy.name}!</h2>
@@ -63,12 +64,12 @@ const ResultsPage = ({ answers }) => {
         {buddy.description}
       </p>
 
-      <Link
-        to="/quests" 
+      <button
+        onClick={handleMeetBuddyClick} 
         className="mt-8 px-10 py-4 bg-white text-blue-500 font-bold rounded-full shadow-xl text-lg"
       >
         Meet your buddy!
-      </Link>
+      </button>
     </div>
   );
 };

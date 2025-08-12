@@ -1,24 +1,104 @@
 export const questData = {
   avoi: {
-    unpolishing: {
-      title: 'Unpolishing Arc',
-      description: 'Discover and embrace your authentic self.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    confidence: {
+      title: 'Confidence Arc',
+      description: 'Build self-assurance and belief in your abilities.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    lettingGo: {
-      title: 'Letting Go Arc',
-      description: 'Release inhibitions and connect more freely.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    conversation: {
+      title: 'Conversation Arc',
+      description: 'Enhance your skills in starting and maintaining chats.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    casualConnection: {
-      title: 'Casual Connection Arc',
-      description: 'Find comfort and joy in everyday social interactions.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    authenticity: {
+      title: 'Authenticity Arc',
+      description: 'Learn to be true to yourself in social situations.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    balancing: {
-      title: 'Balancing Arc',
-      description: 'Balance your needs with the needs of others.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    anxiety: {
+      title: 'Anxiety Arc',
+      description: 'Develop techniques to manage and reduce anxiety.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
   },
   nervy: {
@@ -50,63 +130,283 @@ export const questData = {
     conversation: {
       title: 'Conversation Arc',
       description: 'Enhance your skills in starting and maintaining chats.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
     authenticity: {
       title: 'Authenticity Arc',
       description: 'Learn to be true to yourself in social situations.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
     anxiety: {
       title: 'Anxiety Arc',
       description: 'Develop techniques to manage and reduce anxiety.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
   },
   iso: {
-    connections: {
-        title: 'Connections Arc',
-        description: 'Build stronger, more meaningful connections.',
-        quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    confidence: {
+      title: 'Confidence Arc',
+      description: 'Build self-assurance and belief in your abilities.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    assumptions: {
-        title: 'Assumptions Arc',
-        description: 'Learn to challenge assumptions and see people more clearly.',
-        quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    conversation: {
+      title: 'Conversation Arc',
+      description: 'Enhance your skills in starting and maintaining chats.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    deepConversation: {
-        title: 'Deep Conversation Arc',
-        description: 'Move beyond small talk to more fulfilling discussions.',
-        quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    authenticity: {
+      title: 'Authenticity Arc',
+      description: 'Learn to be true to yourself in social situations.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    selfWorth: {
-        title: 'Self-worth Arc',
-        description: 'Recognize your value in your relationships.',
-        quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    anxiety: {
+      title: 'Anxiety Arc',
+      description: 'Develop techniques to manage and reduce anxiety.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
   },
   enthu: {
-    learnToListening: {
-      title: 'Learn to Listen Arc',
-      description: 'Understand others better by honing your listening skills.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    confidence: {
+      title: 'Confidence Arc',
+      description: 'Build self-assurance and belief in your abilities.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    excitement: {
-      title: 'Excitement Arc',
-      description: 'Share your excitement in a way that connects with others.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    conversation: {
+      title: 'Conversation Arc',
+      description: 'Enhance your skills in starting and maintaining chats.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    selfAwareness: {
-      title: 'Self-awareness Arc',
-      description: 'Become more aware of your social cues and energy.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    authenticity: {
+      title: 'Authenticity Arc',
+      description: 'Learn to be true to yourself in social situations.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-    connection: {
-      title: 'Connection Arc',
-      description: 'Build deeper connections through shared passions.',
-      quests: [ { title: 'Quest 1' }, { title: 'Quest 2' }, { title: 'Quest 3' }, { title: 'Quest 4' }, { title: 'Quest 5' } ]
+    anxiety: {
+      title: 'Anxiety Arc',
+      description: 'Develop techniques to manage and reduce anxiety.',
+      quests: [
+        { title: 'Take the lead!', type: 'text' },
+        { title: 'Think about a time you suggested a topic in a group and it went well.', type: 'text' },
+        { title: 'How did it go? Were you passionate about it?', type: 'input' },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'What helped you feel confident bringing it up?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Could you lead a conversation with nervy now?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'ai summary', showAvatarOnCard: true },
+        { title: 'Positive Self-Talk', subtitle: 'User rephrases a self-critical thought as something to work on.', type: 'text' },
+        { title: 'Do you feel like when it comes to social blunders, you are especially hard on yourself?', type: 'text' },
+        { title: 'What\'s something you\'re hard on yourself about?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'How would a kind friend reframe that thought for you?', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Now rephrase that critical self-thought into a kind one yourself!', type: 'input', showAvatarOnCard: true },
+        { title: 'ai response', showAvatarOnCard: true },
+        { title: 'Sit with it', subtitle: 'User notices a tough feeling (like jealousy, fear, or shame) and explores it instead of pushing it away', type: 'text' },
+        { title: 'You\'ve completed this arc!', subtitle: 'You have rephrased your self-talk. See the result by swiping up!', type: 'text', isArcComplete: true }
+      ]
     },
-  }
+  },
 };
 
 export const resultsData = {
@@ -192,20 +492,193 @@ export const avatars = [
   },
 ];
 
-export const tutorialSteps = [
-    {
-      title: 'Welcome to Hiki-no-more!',
-      text: 'This is the tutorial for the app. Click next/previous to navigate the tutorial.',
-    },
-    {
-      title: 'Chats',
-      text: 'This is the Chats page, which is the home page of the app',
-      highlightId: 'chat-list-container'
-    },
-    {
-      title: 'Navigation',
-      text: 'This is the navigation bar. The buttons will take you to the other features (left to right): Calendar, Chat, Quests, Profile',
-      highlightId: 'navbar-container'
-    },
-    // Add more tutorial steps here as needed
+export const tutorialStepsLanding = [
+  {
+    intro: 'Welcome to Hiki-No-More!',
+  },
+  {
+    element: '#title',
+    intro: 'This is the title of our app.',
+  },
+  {
+    element: '#signup-button',
+    intro: 'Sign up to create a new account and start your journey with us.',
+  },
+  {
+    element: '#login-button',
+    intro: 'Already have an account? Log in here to continue.',
+  },
+  {
+    element: '#play-tutorial-button',
+    intro: 'Replay the tutorial to learn how to use the app effectively.',
+  }
+];
+
+export const tutorialStepsChat = [
+  {
+    intro: 'Welcome to Hiki-No-more! This is the Chats page, which is the home page of the app. Click next to continue.',
+  },
+  {
+    element: '#chat-list-container',
+    intro: 'Here you will see all your active chats. The first one is your buddy, Nervy.',
+  },
+  {
+    element: '#connect-button',
+    intro: 'This is where you can connect with others and create new group chats.',
+  },
+  {
+    element: '#navbar-container',
+    intro: 'This is the navigation bar. The buttons will take you to the other features.',
+  },
+];
+
+export const tutorialStepsChatPage = [
+  {
+    intro: 'This is your individual chat page with your buddy. You can now start talking to them!',
+  },
+  {
+    element: '#chat-header',
+    intro: 'This is the chat header. It shows your buddy\'s name and avatar.',
+  },
+  {
+    element: '#message-input',
+    intro: 'This is where you can type your messages to your buddy.',
+  },
+];
+
+export const tutorialStepsProfile = [
+  {
+    intro: 'Welcome to your Profile page!',
+  },
+  {
+    element: '#profile-avatar',
+    intro: 'This is your buddy\'s avatar.',
+  },
+  {
+    element: '#profile-menu',
+    intro: 'You can access various settings and options here, including retaking the persona quiz.',
+  }
+];
+
+export const tutorialStepsQuests = [
+  {
+    intro: 'Welcome to the Quests page!',
+  },
+  {
+    element: '#quest-list',
+    intro: 'This is where you can see all the quest arcs for your buddy.',
+  }
+];
+
+export const tutorialStepsQuestDetail = [
+  {
+    intro: 'Welcome to your Quest Arc! This page displays all the quests you can do for a specific arc. Click next to continue.',
+  },
+  {
+    element: '#back-to-quests',
+    intro: 'Click here to go back to the main Quests page.',
+  },
+  {
+    element: '#prev-arc',
+    intro: 'Click here to go to the previous arc.',
+  },
+  {
+    element: '#next-arc',
+    intro: 'Click here to go to the next arc.',
+  },
+  {
+    element: '#buddy-image',
+    intro: 'This is your buddy, who will guide you through this arc.',
+  },
+  {
+    element: '#quest-star-1',
+    intro: 'Each star represents a quest. Click on a star to start a quest.',
+  }
+];
+
+export const tutorialStepsGroupChat = [
+  {
+    intro: 'Welcome to the Group Chat page! This is where you can practice new social skills with your buddy and a friend in a safe space.',
+  },
+  {
+    element: '#back-button',
+    intro: 'Click here to go back to the Connect page.',
+  },
+  {
+    element: '#chat-header',
+    intro: 'This is the chat header, showing your buddy and your friend\'s names.',
+  },
+  {
+    element: '#live-mode-banner',
+    intro: 'Hold this button to enter Live Mode, where you can get real-time coaching from your buddy.',
+  },
+  {
+    element: '.chat-bubble',
+    intro: 'This is the conversation between you, your buddy, and your friend.',
+  },
+  {
+    element: '#prompt-icon',
+    intro: 'Click on your buddy\'s avatar in the chat to get useful prompts and tips.',
+  },
+  {
+    element: '#prompt-message',
+    intro: 'This is a prompt from your buddy. It gives you advice on how to respond.',
+  },
+  {
+    element: '#message-input',
+    intro: 'Use this to type your message and send it to the group.',
+  }
+];
+
+export const tutorialStepsDiaryOverview = [
+  {
+    intro: 'Welcome to your Check-in Calendar!',
+  },
+  {
+    element: '#back-button',
+    intro: 'Use this button to go back to the previous page.',
+  },
+  {
+    element: '#calendar-container',
+    intro: 'This calendar shows your daily check-in streaks. Each colored dot represents an entry.',
+  },
+  {
+    element: '#streak-info',
+    intro: 'You can see your current check-in streak here.',
+  },
+  {
+    element: '#check-in-button',
+    intro: 'Click here to check in for today and add a new entry to your diary!',
+  },
+];
+
+export const tutorialStepsResults = [
+  {
+    intro: 'Welcome to the Results page!',
+  },
+  {
+    element: '#buddy-info',
+    intro: 'This is the result of your quiz. It shows your buddy\'s name and a description.',
+  },
+  {
+    element: '#meet-buddy-button',
+    intro: 'Click here to meet your buddy and start your journey.',
+  }
+];
+
+export const tutorialStepsPage = [
+  {
+    title: 'Welcome to Hiki-no-more!',
+    text: 'This is the tutorial for the app. Click next/previous to navigate the tutorial.',
+  },
+  {
+    title: 'Chats',
+    text: 'This is the Chats page, which is the home page of the app',
+    highlightId: 'chat-list-container'
+  },
+  {
+    title: 'Navigation',
+    text: 'This is the navigation bar. The buttons will take you to the other features (left to right): Calendar, Chat, Quests, Profile',
+    highlightId: 'navbar-container'
+  },
 ];
