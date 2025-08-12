@@ -411,7 +411,7 @@ export const questData = {
 
 export const resultsData = {
   nervy: { name: 'Nervy', tagline: "I'm always around people, but I don't know how to connect with them.", description: "Find yourself a buddy who understands your needs.", image: '/nervy1.svg' },
-  iso: { name: 'Iso', tagline: "I prefer being alone but deep down, I wish I knew how to make real friends.", description: "Find yourself thinking this? Pick Iso to take small meaningful steps towards forming meaningful friendships without burning out.", image: '/iso.svg' },
+  iso: { name: 'Iso', tagline: "I prefer being alone but deep down, I wish I knew how to make real friends.", description: "Find yourself thinking this? Pick Iso to take small meaningful steps towards forming meaningful friendships without burning out.", image: '/Iso.svg' },
   avoi: { name: 'Avoi', tagline: "I'm confident in formal settings, but casual socialising feels awkward and exhausting.", description: "Find yourself thinking this? Pick Avoi to feel more at ease in informal settings and learn to open up without losing your boundaries.", image: '/Avoi.svg' },
   enthu: { name: 'Enthu', tagline: "I get excited talking about what I love, but don’t always realise when others tune out.", description: "Find yourself thinking this? Pick Enthu to improve your social awareness and connect with people without dimming your passion.", image: '/Enthu.svg' },
 };
