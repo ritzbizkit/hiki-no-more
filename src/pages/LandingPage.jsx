@@ -26,8 +26,13 @@ const LandingPage = () => {
     setStepsEnabled(true);
   };
 
-  const onExit = () => {
-    setStepsEnabled(false);
+  const onExit = (stepIndex) => {
+    // Check if we're on the last step (intro.js uses 0-based indexing)
+    if (stepIndex === tutorialStepsLanding.length - 1) {
+      onTutorialComplete();
+    } else {
+      setStepsEnabled(false);
+    }
   }
 
   return (

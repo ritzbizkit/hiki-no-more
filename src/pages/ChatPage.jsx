@@ -67,8 +67,13 @@ const ChatPage = () => {
     setStepsEnabled(false);
   };
 
-  const onExit = () => {
-    setStepsEnabled(false);
+  const onExit = (stepIndex) => {
+    // Check if we're on the last step (intro.js uses 0-based indexing)
+    if (stepIndex === tutorialStepsChatPage.length - 1) {
+      onTutorialComplete();
+    } else {
+      setStepsEnabled(false);
+    }
   };
 
   const replayTutorial = () => {

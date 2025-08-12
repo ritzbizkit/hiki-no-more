@@ -28,8 +28,13 @@ const ChatHomePage = ({ activeChats }) => {
     setStepsEnabled(false);
   };
 
-  const onExit = () => {
-    setStepsEnabled(false);
+  const onExit = (stepIndex) => {
+    // Check if we're on the last step (intro.js uses 0-based indexing)
+    if (stepIndex === tutorialStepsChat.length - 1) {
+      onTutorialComplete();
+    } else {
+      setStepsEnabled(false);
+    }
   }
 
   const replayTutorial = () => {
