@@ -58,7 +58,7 @@ const ProfilePage = () => {
           <ProfileMenuItem to="/profile-setup-2" label="Edit profile" />
           <ProfileMenuItem to="/settings" label="Settings" />
           <ProfileMenuItem to="/quiz-intro" label="Retake Persona Test" />
-          <ProfileMenuItem label="Sign out" isSignOut={true} onClick={logout} />
+          <ProfileMenuItem label="Sign out" isSignOut={true} />
         </div>
       </div>
     </div>
