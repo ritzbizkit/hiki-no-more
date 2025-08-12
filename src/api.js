@@ -115,11 +115,21 @@ export const formatChatHistory = (history) => {
   
   return history
     .filter(content => content.role && content.role !== 'system') // Filter out system messages
-    .map(content => ({
-      sender: content.role === 'user' ? 'user' : 'buddy',
-      text: extractTextFromParts(content.parts || [])
-    }))
-    .filter(msg => msg.text.trim()); // Filter out empty messages
+    .flatMap(content => {
+      const sender = content.role === 'user' ? 'user' : 'buddy';
+      const text = extractTextFromParts(content.parts || []);
+      
+      // Split buddy messages at "/" characters into separate bubbles
+      if (sender === 'buddy' && text.includes('/')) {
+        return text.split('/')
+          .map(part => part.trim())
+          .filter(part => part) // Remove empty parts
+          .map(part => ({ sender, text: part }));
+      }
+      
+      return { sender, text };
+    })
+    .filter(msg => msg.text && msg.text.trim()); // Filter out empty messages
 };
 
 /**
@@ -132,11 +142,20 @@ export const formatAIResponse = (response) => {
   
   return response
     .filter(content => content.role !== 'user') // Filter out user messages
-    .map(content => ({
-      sender: 'buddy',
-      text: extractTextFromParts(content.parts || [])
-    }))
-    .filter(msg => msg.text.trim()); // Filter out empty messages
+    .flatMap(content => {
+      const text = extractTextFromParts(content.parts || []);
+      
+      // Split buddy messages at "/" characters into separate bubbles
+      if (text.includes('/')) {
+        return text.split('/')
+          .map(part => part.trim())
+          .filter(part => part) // Remove empty parts
+          .map(part => ({ sender: 'buddy', text: part }));
+      }
+      
+      return { sender: 'buddy', text };
+    })
+    .filter(msg => msg.text && msg.text.trim()); // Filter out empty messages
 };
 
 /**
