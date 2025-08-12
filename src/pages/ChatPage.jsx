@@ -183,19 +183,24 @@ const ChatPage = () => {
       </Card>
       
       {/* Chat Area */}
-      <div className="flex-grow p-4 space-y-4 overflow-y-auto">
+      <div className="flex-grow p-4 overflow-y-auto">
         {messages.length === 0 ? (
           <div className="text-center text-gray-500 mt-8">
             No messages yet. Start a conversation!
           </div>
         ) : (
-          messages.map((message, index) => (
-            <div key={index} className={`chat ${message.sender === 'user' ? 'chat-end' : 'chat-start'}`}>
-              <div className={`chat-bubble relative ${
-                message.sender === 'user' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-800'
-              }`}>
+          messages.map((message, index) => {
+            const prevMessage = index > 0 ? messages[index - 1] : null;
+            const isSameSpeaker = prevMessage && prevMessage.sender === message.sender;
+            const marginClass = index === 0 ? '' : (isSameSpeaker ? 'mt-1' : 'mt-4');
+            
+            return (
+              <div key={index} className={`chat ${message.sender === 'user' ? 'chat-end' : 'chat-start'} ${marginClass}`}>
+                <div className={`chat-bubble relative ${
+                  message.sender === 'user' 
+                    ? 'bg-blue-500 text-white' 
+                    : 'bg-gray-200 text-gray-800'
+                }`}>
                 <ReactMarkdown
                   components={{
                     strong: ({ children }) => <strong className="font-bold">{children}</strong>,
@@ -239,7 +244,8 @@ const ChatPage = () => {
                 </ReactMarkdown>
               </div>
             </div>
-          ))
+            );
+          })
         )}
         {isSending && (
           <div className="chat chat-start">
