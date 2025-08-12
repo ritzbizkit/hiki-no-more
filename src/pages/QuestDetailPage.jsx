@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from '@heroicons/react/24/solid';
 import { Steps } from 'intro.js-react';
 import { questData, resultsData, tutorialStepsQuestDetail } from '../data.js';
+import { QuestUtils } from '../api.js';
 import { useTheme } from '../components/ThemeProvider';
 
 const QuestDetailPage = () => {
@@ -42,6 +43,9 @@ const QuestDetailPage = () => {
   const nextArcKey = arcKeys[nextArcIndex];
   const prevArcKey = arcKeys[prevArcIndex];
 
+  // Get completed quests for this buddy and arc
+  const completedQuests = QuestUtils.getCompletedQuests(buddyName, arcName);
+
   if (!arc || !buddyInfo) {
     return (
       <div className="p-4">
@@ -59,7 +63,6 @@ const QuestDetailPage = () => {
     { bottom: '59%', right: '25%' },
     { bottom: '76%', left: '25%' },
   ];
-  const currentQuestIndex = 0;
 
   return (
     <div className={`min-h-screen p-4 flex flex-col ${theme.background}`}>
@@ -85,19 +88,19 @@ const QuestDetailPage = () => {
         <div id="buddy-image" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <img src={buddyInfo.image} alt={buddyInfo.name} className="w-32 h-32 opacity-30" />
         </div>
-        {starPositions.map((position, index) => (
-            <Link
-                key={index} 
-                to={`/quests/${buddyName}/${arcName}/${index}`}
-                id={`quest-star-${index + 1}`}
-                className="absolute w-16 h-16 bg-white/80 rounded-full flex items-center justify-center shadow-lg border-2 border-white transition-transform hover:scale-110"
-                style={{ ...position }} >
-                {index === currentQuestIndex ? 
-                    (<StarIcon className="w-10 h-10 text-yellow-400" />) : 
-                    (<StarIcon className="w-10 h-10 text-gray-400/60" />)
-                }
-            </Link>
-        ))}
+        {starPositions.map((position, index) => {
+            const isCompleted = completedQuests.includes(index.toString());
+            return (
+              <Link
+                  key={index} 
+                  to={`/quests/${buddyName}/${arcName}/${index}`}
+                  id={`quest-star-${index + 1}`}
+                  className="absolute w-16 h-16 bg-white/80 rounded-full flex items-center justify-center shadow-lg border-2 border-white transition-transform hover:scale-110"
+                  style={{ ...position }} >
+                  <StarIcon className={`w-10 h-10 ${isCompleted ? 'text-yellow-400' : 'text-gray-400/60'}`} />
+              </Link>
+            );
+        })}
         <Link to={`/quests/${buddyName}/${nextArcKey}`} className="h-full flex items-center px-2 z-10" id="next-arc">
           <ChevronRightIcon className="w-10 h-10 text-gray-400" />
         </Link>

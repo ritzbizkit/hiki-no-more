@@ -140,6 +140,34 @@ export const formatAIResponse = (response) => {
 };
 
 /**
+ * Send a message to a quiz endpoint
+ * @param {string} quizRoute - The quiz route (e.g., 'quiz1')
+ * @param {string|null} stageId - The current stage ID
+ * @param {Object} userInputs - Dictionary of stage_id to user inputs
+ * @param {Object} modelReplies - Dictionary of stage_id to model replies
+ * @returns {Promise<Object>} - QuizResponse object
+ */
+export const sendQuizMessage = async (quizRoute, stageId = null, userInputs = {}, modelReplies = {}) => {
+  const response = await fetch(`${BASE_URL}/${quizRoute}/send`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      stage_id: stageId,
+      user_inputs: userInputs,
+      model_replies: modelReplies,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to send quiz message: ${response.statusText}`);
+  }
+
+  return await response.json();
+};
+
+/**
  * Chat management utilities
  */
 export const ChatUtils = {
@@ -209,5 +237,73 @@ export const ChatUtils = {
     const newChatId = response.chat_id;
     ChatUtils.setChatId(buddyKey, newChatId);
     return newChatId;
+  }
+};
+
+/**
+ * Quest management utilities
+ */
+export const QuestUtils = {
+  /**
+   * Mark a quest as completed in localStorage
+   * @param {string} buddyName - The buddy name
+   * @param {string} arcName - The arc name
+   * @param {string} questId - The quest ID
+   */
+  markQuestCompleted: (buddyName, arcName, questId) => {
+    const key = `questCompleted_${buddyName}_${arcName}_${questId}`;
+    localStorage.setItem(key, 'true');
+  },
+
+  /**
+   * Check if a quest is completed
+   * @param {string} buddyName - The buddy name
+   * @param {string} arcName - The arc name
+   * @param {string} questId - The quest ID
+   * @returns {boolean} - True if quest is completed
+   */
+  isQuestCompleted: (buddyName, arcName, questId) => {
+    const key = `questCompleted_${buddyName}_${arcName}_${questId}`;
+    return localStorage.getItem(key) === 'true';
+  },
+
+  /**
+   * Get all completed quests for a buddy and arc
+   * @param {string} buddyName - The buddy name
+   * @param {string} arcName - The arc name
+   * @returns {Array<string>} - Array of completed quest IDs
+   */
+  getCompletedQuests: (buddyName, arcName) => {
+    const completed = [];
+    const prefix = `questCompleted_${buddyName}_${arcName}_`;
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(prefix) && localStorage.getItem(key) === 'true') {
+        const questId = key.replace(prefix, '');
+        completed.push(questId);
+      }
+    }
+    
+    return completed;
+  },
+
+  /**
+   * Clear all quest completion data for a buddy and arc
+   * @param {string} buddyName - The buddy name
+   * @param {string} arcName - The arc name
+   */
+  clearQuestProgress: (buddyName, arcName) => {
+    const prefix = `questCompleted_${buddyName}_${arcName}_`;
+    const keysToRemove = [];
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(prefix)) {
+        keysToRemove.push(key);
+      }
+    }
+    
+    keysToRemove.forEach(key => localStorage.removeItem(key));
   }
 };
