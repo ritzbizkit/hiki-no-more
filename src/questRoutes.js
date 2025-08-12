@@ -4,13 +4,39 @@
  * 
  * This will be filled in later with actual mappings
  */
-export const questRouteMapping = {
-  // Example mappings (to be filled in later):
-  "avoi-confidence-0": "quiz1",
-  // "avoi-confidence-1": "quiz2",
-  // "avoi-conversation-0": "quiz3",
-  // "nervy-confidence-0": "quiz4",
+
+const buddies = ['avoi','enthu','iso','nervy'];
+const arcs = ['confidence', 'conversation', 'authenticity', 'anxiety'];
+
+// Available quest routes for testing
+const availableRoutes = [
+  "Authenticity_Celebrate_Uniqueness",
+  "Authenticity_Drop_The_Mask", 
+  "Authenticity_Honest_Reflection",
+  "Authenticity_Own_Your_Story",
+  "Authenticity_True_To_Myself"
+];
+
+// Generate quest route mapping for all permutations
+const generateQuestRouteMapping = () => {
+  const mapping = {};
+  let routeIndex = 0;
+  
+  // For each buddy-arc combination, create 5 quests (0-4) and cycle through available routes
+  for (const buddy of buddies) {
+    for (const arc of arcs) {
+      for (let questId = 0; questId < 5; questId++) {
+        const key = `${buddy}-${arc}-${questId}`;
+        mapping[key] = availableRoutes[routeIndex % availableRoutes.length];
+        routeIndex++;
+      }
+    }
+  }
+  
+  return mapping;
 };
+
+export const questRouteMapping = generateQuestRouteMapping();
 
 /**
  * Get the quiz route for a specific quest

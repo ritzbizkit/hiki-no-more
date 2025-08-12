@@ -44,7 +44,6 @@ const ResultsPage = ({ answers }) => {
 
   const handleMeetBuddyClick = () => {
     // Call signup to set the user as logged in before navigating
-    signup('user@example.com', 'password123'); // Use placeholder details for now
     navigate('/chat');
   };
 

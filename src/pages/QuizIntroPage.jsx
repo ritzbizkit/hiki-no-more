@@ -11,7 +11,7 @@ const QuizIntroPage = () => {
         {/* Icon Group */}
         <div className="flex items-center justify-center gap-4 sm:gap-8 mb-8">
           <img
-            src="/iso.svg"
+            src="/Iso.svg"
             alt="Iso Avatar"
             className="w-20 h-auto sm:w-24"
           />

@@ -58,9 +58,9 @@ const QuestDetailPage = () => {
   
   const starPositions = [
     { bottom: '8%', left: '25%' },
-    { bottom: '25%', right: '25%' },
-    // This star has been removed as per your request
+    { bottom: '15%', right: '25%' },
     { bottom: '59%', right: '25%' },
+    { bottom: '39%', right: '25%' },
     { bottom: '76%', left: '25%' },
   ];
 
