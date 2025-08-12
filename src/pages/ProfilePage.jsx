@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserCircleIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../components/ThemeProvider';
 import { useBuddy } from '../context/BuddyContext';
-import { useAuth } from '../context/AuthContext';
 
 // Define the sub-component ONCE at the top
 const ProfileMenuItem = ({ to, label, isSignOut = false, onClick }) => {
@@ -35,7 +34,6 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const { buddyDetails } = useBuddy();
-  const { logout } = useAuth();
 
   return (
     <div className={`p-4 min-h-screen ${theme.background}`}>

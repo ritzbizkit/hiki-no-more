@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Import useAuth hook
 import { useTheme } from '../components/ThemeProvider';
 // The following line has been removed to fix the error:
 // import { tutorialStepsLoginPage } from '../data.js'; 
@@ -8,7 +7,6 @@ import { useTheme } from '../components/ThemeProvider';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth(); // Access the login function from AuthContext
   const { theme } = useTheme();
   const navigate = useNavigate();
 

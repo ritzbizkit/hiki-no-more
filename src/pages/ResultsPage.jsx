@@ -4,11 +4,9 @@ import { resultsData } from '../data.js';
 
 import { useBuddy } from '../context/BuddyContext.jsx';
 import { useTheme } from '../components/ThemeProvider.jsx';
-import { useAuth } from '../context/AuthContext.jsx'; // Import the useAuth hook
 
 const ResultsPage = ({ answers }) => {
   const { setChosenBuddy } = useBuddy();
-  const { signup } = useAuth(); // Access the signup function from AuthContext
   const navigate = useNavigate();
 
   const winningPersona = useMemo(() => {
