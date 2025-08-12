@@ -192,7 +192,7 @@ const ChatPage = () => {
           messages.map((message, index) => {
             const prevMessage = index > 0 ? messages[index - 1] : null;
             const isSameSpeaker = prevMessage && prevMessage.sender === message.sender;
-            const marginClass = index === 0 ? '' : (isSameSpeaker ? 'mt-1' : 'mt-4');
+            const marginClass = index === 0 ? '' : (isSameSpeaker ? '-mt-1' : 'mt-4');
             
             return (
               <div key={index} className={`chat ${message.sender === 'user' ? 'chat-end' : 'chat-start'} ${marginClass}`}>
