@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Steps } from 'intro.js-react';
+import ReactMarkdown from 'react-markdown';
 import { useBuddy } from '../context/BuddyContext';
 import { useTheme } from '../components/ThemeProvider';
 import { resultsData, tutorialStepsChatPage } from '../data.js';
@@ -186,7 +187,47 @@ const ChatPage = () => {
                   ? 'bg-blue-500 text-white' 
                   : 'bg-gray-200 text-gray-800'
               }`}>
-                {message.text}
+                <ReactMarkdown
+                  components={{
+                    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+                    em: ({ children }) => <em className="italic">{children}</em>,
+                    code: ({ children }) => (
+                      <code className={`px-1 py-0.5 rounded text-sm font-mono ${
+                        message.sender === 'user' 
+                          ? 'bg-blue-600 text-blue-100' 
+                          : 'bg-gray-300 text-gray-900'
+                      }`}>
+                        {children}
+                      </code>
+                    ),
+                    pre: ({ children }) => (
+                      <pre className={`p-2 rounded text-sm font-mono overflow-x-auto ${
+                        message.sender === 'user' 
+                          ? 'bg-blue-600 text-blue-100' 
+                          : 'bg-gray-300 text-gray-900'
+                      }`}>
+                        {children}
+                      </pre>
+                    ),
+                    ul: ({ children }) => <ul className="list-disc list-inside ml-4 mb-2">{children}</ul>,
+                    ol: ({ children }) => <ol className="list-decimal list-inside ml-4 mb-2">{children}</ol>,
+                    li: ({ children }) => <li className="mb-1">{children}</li>,
+                    blockquote: ({ children }) => (
+                      <blockquote className={`border-l-4 pl-4 italic ${
+                        message.sender === 'user' 
+                          ? 'border-blue-300' 
+                          : 'border-gray-400'
+                      }`}>
+                        {children}
+                      </blockquote>
+                    ),
+                    h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-sm font-bold mb-1">{children}</h3>,
+                  }}
+                >
+                  {message.text}
+                </ReactMarkdown>
               </div>
             </div>
           ))
