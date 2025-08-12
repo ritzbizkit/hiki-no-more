@@ -7,17 +7,18 @@ const LandingPage = () => {
   const [stepsEnabled, setStepsEnabled] = useState(false);
 
   useEffect(() => {
-    // Add delay to avoid React's strict mode double render from breaking this during development.
     const handle = setTimeout(() => {
-      const tutorialCompleted = localStorage.getItem('tutorialCompleted');
-      setStepsEnabled(!(tutorialCompleted === 'true'));
+      const tutorialCompleted = localStorage.getItem('tutorial_LandingPage');
+      if (tutorialCompleted !== 'true') {
+        setStepsEnabled(true);
+      }
     }, 500);
 
     return () => clearTimeout(handle);
   }, []);
 
   const onTutorialComplete = () => {
-    localStorage.setItem('tutorialCompleted', 'true');
+    localStorage.setItem('tutorial_LandingPage', 'true');
     setStepsEnabled(false);
   };
 

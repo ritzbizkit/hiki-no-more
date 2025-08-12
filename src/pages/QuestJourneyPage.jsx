@@ -33,14 +33,18 @@ const QuestJourneyPage = () => {
   const [stepsEnabled, setStepsEnabled] = useState(false);
 
   useEffect(() => {
-    const tutorialCompleted = localStorage.getItem('questsTutorialCompleted');
-    if (tutorialCompleted !== 'true') {
-      setStepsEnabled(true);
-    }
+    const handle = setTimeout(() => {
+      const tutorialCompleted = localStorage.getItem('tutorial_QuestJourneyPage');
+      if (tutorialCompleted !== 'true') {
+        setStepsEnabled(true);
+      }
+    }, 500);
+
+    return () => clearTimeout(handle);
   }, []);
 
   const onTutorialComplete = () => {
-    localStorage.setItem('questsTutorialCompleted', 'true');
+    localStorage.setItem('tutorial_QuestJourneyPage', 'true');
     setStepsEnabled(false);
   };
 

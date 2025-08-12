@@ -14,7 +14,7 @@ const ChatHomePage = ({ activeChats }) => {
 
   useEffect(() => {
     const handle = setTimeout(() => {
-      const tutorialCompleted = localStorage.getItem('chatTutorialCompleted');
+      const tutorialCompleted = localStorage.getItem('tutorial_ChatHomePage');
       if (tutorialCompleted !== 'true') {
         setStepsEnabled(true);
       }
@@ -24,7 +24,7 @@ const ChatHomePage = ({ activeChats }) => {
   }, []);
 
   const onTutorialComplete = () => {
-    localStorage.setItem('chatTutorialCompleted', 'true');
+    localStorage.setItem('tutorial_ChatHomePage', 'true');
     setStepsEnabled(false);
   };
 

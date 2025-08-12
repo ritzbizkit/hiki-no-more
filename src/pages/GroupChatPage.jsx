@@ -32,7 +32,7 @@ const GroupChatPage = () => {
 
   useEffect(() => {
     const handle = setTimeout(() => {
-      const tutorialCompleted = localStorage.getItem('groupChatTutorialCompleted');
+      const tutorialCompleted = localStorage.getItem('tutorial_GroupChatPage');
       if (tutorialCompleted !== 'true') {
         setStepsEnabled(true);
       }
@@ -42,7 +42,7 @@ const GroupChatPage = () => {
   }, []);
 
   const onTutorialComplete = () => {
-    localStorage.setItem('groupChatTutorialCompleted', 'true');
+    localStorage.setItem('tutorial_GroupChatPage', 'true');
     setStepsEnabled(false);
   };
 

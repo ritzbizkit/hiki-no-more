@@ -31,10 +31,14 @@ const ChatPage = () => {
   const [stepsEnabled, setStepsEnabled] = useState(false);
 
   useEffect(() => {
-    const tutorialCompleted = localStorage.getItem('chatPageTutorialCompleted');
-    if (tutorialCompleted !== 'true') {
-      setStepsEnabled(true);
-    }
+    const handle = setTimeout(() => {
+      const tutorialCompleted = localStorage.getItem('tutorial_ChatPage');
+      if (tutorialCompleted !== 'true') {
+        setStepsEnabled(true);
+      }
+    }, 500);
+
+    return () => clearTimeout(handle);
   }, []);
 
   // Initialize chat when component mounts
@@ -59,7 +63,7 @@ const ChatPage = () => {
   }, [buddyKey, userId, buddyDetails]);
 
   const onTutorialComplete = () => {
-    localStorage.setItem('chatPageTutorialCompleted', 'true');
+    localStorage.setItem('tutorial_ChatPage', 'true');
     setStepsEnabled(false);
   };
 
