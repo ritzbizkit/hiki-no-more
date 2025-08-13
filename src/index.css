@@ -53,5 +53,5 @@
 
 /* https://github.com/usablica/intro.js/issues/2081 */
 .introjs-tooltipReferenceLayer {
-    visibility: visible;
+    visibility: visible !important;
 }
