@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { questData } from '../data';
 import { sendQuizMessage, QuestUtils } from '../api';
 import { getQuestRoute } from '../questRoutes';
@@ -56,8 +57,43 @@ const QuestContent = ({ theme, title, content }) => (
 
 // Model reply section component
 const ModelReplySection = ({ theme, modelReply, isLoading }) => (
-  <div className={`text-sm mb-4 p-3 bg-gray-100 rounded ${theme.text}`}>
-    {isLoading ? 'Loading...' : (modelReply || 'Loading AI response...')}
+  <div className={`text-sm mb-4 p-3 bg-gray-100 rounded max-h-96 overflow-y-auto ${theme.text}`}>
+    {isLoading ? (
+      'Loading...'
+    ) : modelReply ? (
+      <ReactMarkdown
+        components={{
+          strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+          em: ({ children }) => <em className="italic">{children}</em>,
+          code: ({ children }) => (
+            <code className="px-1 py-0.5 rounded text-sm font-mono bg-gray-300 text-gray-900">
+              {children}
+            </code>
+          ),
+          pre: ({ children }) => (
+            <pre className="p-2 rounded text-sm font-mono overflow-x-auto bg-gray-300 text-gray-900">
+              {children}
+            </pre>
+          ),
+          ul: ({ children }) => <ul className="list-disc list-inside ml-4 mb-2">{children}</ul>,
+          ol: ({ children }) => <ol className="list-decimal list-inside ml-4 mb-2">{children}</ol>,
+          li: ({ children }) => <li className="mb-1">{children}</li>,
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-gray-400 pl-4 italic">
+              {children}
+            </blockquote>
+          ),
+          h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
+          h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
+          h3: ({ children }) => <h3 className="text-sm font-bold mb-1">{children}</h3>,
+          p: ({ children }) => <p className="mb-2">{children}</p>,
+        }}
+      >
+        {modelReply}
+      </ReactMarkdown>
+    ) : (
+      'Loading AI response...'
+    )}
   </div>
 );
 
