@@ -241,21 +241,41 @@ export const ChatUtils = {
     const response = await createNewChat(buddyKey, userId);
     const newChatId = response.chat_id;
     ChatUtils.setChatId(buddyKey, newChatId);
-    return { chatId: newChatId, messages: [] };
+    
+    // Retrieve chat history for the new chat (backend may have added initial messages)
+    try {
+      const chatData = await getChatHistory(newChatId);
+      const messages = formatChatHistory(chatData.history);
+      return { chatId: newChatId, messages };
+    } catch (error) {
+      // If loading fails, return empty messages
+      console.warn('Failed to load new chat history, using empty messages:', error);
+      return { chatId: newChatId, messages: [] };
+    }
   },
 
   /**
    * Delete chat and create a new one
    * @param {string} buddyKey - The buddy identifier
    * @param {string} userId - The user ID
-   * @returns {Promise<string>} - New chat ID
+   * @returns {Promise<{chatId: string, messages: Array}>} - New chat ID and messages
    */
   resetChat: async (buddyKey, userId) => {
     ChatUtils.removeChatId(buddyKey);
     const response = await createNewChat(buddyKey, userId);
     const newChatId = response.chat_id;
     ChatUtils.setChatId(buddyKey, newChatId);
-    return newChatId;
+    
+    // Retrieve chat history for the new chat (should be empty, but for consistency)
+    try {
+      const chatData = await getChatHistory(newChatId);
+      const messages = formatChatHistory(chatData.history);
+      return { chatId: newChatId, messages };
+    } catch (error) {
+      // If loading fails, return empty messages
+      console.warn('Failed to load new chat history, using empty messages:', error);
+      return { chatId: newChatId, messages: [] };
+    }
   }
 };
 

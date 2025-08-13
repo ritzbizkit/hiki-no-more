@@ -121,9 +121,10 @@ const ChatPage = () => {
         setMessages([]);
         setChatId(null);
         
-        // Reset chat using utility function
-        const newChatId = await ChatUtils.resetChat(buddyKey, userId);
+        // Reset chat and retrieve chat history
+        const { chatId: newChatId, messages: chatMessages } = await ChatUtils.resetChat(buddyKey, userId);
         setChatId(newChatId);
+        setMessages(chatMessages);
       } catch (error) {
         console.error('Error creating new chat:', error);
         window.alert(`Error creating new chat: ${error.message}`);

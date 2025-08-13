@@ -5,6 +5,7 @@ import { Steps } from 'intro.js-react';
 import { questData, resultsData, tutorialStepsQuestDetail } from '../data.js';
 import { QuestUtils } from '../api.js';
 import { useTheme } from '../components/ThemeProvider';
+import { questRouteMapping } from '../questRoutes.js';
 
 const QuestDetailPage = () => {
   const { buddyName, arcName } = useParams();
@@ -107,6 +108,7 @@ const QuestDetailPage = () => {
                   className="absolute w-16 h-16 bg-white/80 rounded-full flex items-center justify-center shadow-lg border-2 border-white transition-transform hover:scale-110"
                   style={{ ...position }} >
                   <StarIcon className={`w-10 h-10 ${isCompleted ? 'text-yellow-400' : 'text-gray-400/60'}`} />
+                  <p>{questRouteMapping[`${buddyName}-${arcName}-${index}`]}</p>
               </Link>
             );
         })}
