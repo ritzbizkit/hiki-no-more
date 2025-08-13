@@ -70,7 +70,7 @@ const GroupChatPage = () => {
   };
 
   return (
-    <div className={`h-screen flex flex-col ${theme.background}`}>
+    <div className={`h-dvh flex flex-col ${theme.background}`}>
       <Steps
         enabled={stepsEnabled}
         steps={tutorialStepsGroupChat}

@@ -31,7 +31,7 @@ const CheckInPage = () => {
   };
 
   return (
-    <div className={`p-4 min-h-screen ${theme.background}`}>
+    <div className={`p-4 min-h-dvh ${theme.background}`}>
       {/* Themed Header */}
       <Card className={`text-center mb-6 !p-3 ${theme.primary}`}>
         <div className="flex items-center">

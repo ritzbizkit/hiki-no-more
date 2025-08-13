@@ -46,7 +46,7 @@ const DiaryOverviewPage = () => {
   `;
 
   return (
-    <div style={{ backgroundColor: '#FBFBFE' }} className="p-4 min-h-screen">
+    <div style={{ backgroundColor: '#FBFBFE' }} className="p-4 min-h-dvh">
       <style>{calendarStyles}</style>
 
       <div className="bg-blue-100 p-4 rounded-xl flex items-center relative mb-6 shadow-sm">

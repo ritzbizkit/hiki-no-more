@@ -39,7 +39,7 @@ const QuizQuestionPage = ({ answers, setAnswers }) => {
 
 
   return (
-    <div className="p-4 min-h-screen flex flex-col justify-between" style={{ backgroundColor: '#F8F8F8' }}>
+    <div className="p-4 min-h-dvh flex flex-col justify-between" style={{ backgroundColor: '#F8F8F8' }}>
       <div>
         <div className="text-center my-8">
           <h1 className="text-2xl font-bold text-gray-800 px-4">{question.question}</h1>

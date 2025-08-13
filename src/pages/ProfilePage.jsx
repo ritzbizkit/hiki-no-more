@@ -36,7 +36,7 @@ const ProfilePage = () => {
   const { buddyDetails } = useBuddy();
 
   return (
-    <div className={`p-4 min-h-screen ${theme.background}`}>
+    <div className={`p-4 min-h-dvh ${theme.background}`}>
       <Link to="/quests" className={`flex items-center mb-4 font-semibold ${theme.text}`}>
         &lt; Back
       </Link>

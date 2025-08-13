@@ -75,7 +75,7 @@ const ConnectPage = ({ setActiveChats }) => {
   const { theme } = useTheme();
 
   return (
-    <div className={`p-4 min-h-screen ${theme.background}`}>
+    <div className={`p-4 min-h-dvh ${theme.background}`}>
       <Card className="text-center relative mb-6">
         <Link to="/chat" className={`absolute left-4 top-1/2 -translate-y-1/2 ${theme.text}`}>
           <ChevronLeftIcon className="w-6 h-6" />

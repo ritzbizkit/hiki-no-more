@@ -11,7 +11,7 @@ const BuddyProfilePage = () => {
   const backLink = `/chat/${buddyName}`;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FBFBFE' }}>
+    <div className="min-h-dvh" style={{ backgroundColor: '#FBFBFE' }}>
       <div className="bg-blue-100 p-6 pt-8 rounded-b-3xl shadow-sm text-center relative">
         <Link to={backLink} className="absolute left-4 top-6">
           <ChevronLeftIcon className="w-8 h-8 text-gray-800" />

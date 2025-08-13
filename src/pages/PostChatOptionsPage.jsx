@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PostChatOptionsPage = () => {
   return (
     <div 
-      className="flex flex-col justify-center items-center min-h-screen p-6 gap-8" 
+      className="flex flex-col justify-center items-center min-h-dvh p-6 gap-8" 
       style={{ backgroundColor: '#FBFBFE' }}
     >
       <Link 

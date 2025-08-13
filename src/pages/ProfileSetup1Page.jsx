@@ -5,7 +5,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline';
 const ProfileSetup1Page = () => {
   return (
     <div 
-      className="flex flex-col justify-center items-center min-h-screen p-6 gap-8" 
+      className="flex flex-col justify-center items-center min-h-dvh p-6 gap-8" 
       style={{ backgroundColor: '#FBFBFE' }}
     >
       <div className="text-center w-full max-w-xs">

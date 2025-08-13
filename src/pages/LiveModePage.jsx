@@ -26,7 +26,7 @@ const LiveModePage = () => {
   }
 
   return (
-    <div className={`flex flex-col min-h-screen p-6 ${theme.background}`}>
+    <div className={`flex flex-col min-h-dvh p-6 ${theme.background}`}>
       <Card className={`text-center relative mb-12 !p-3 ${theme.primary}`}>
         {/* UPDATED: This is now a button that calls navigate(-1) */}
         <button onClick={() => navigate(-1)} className={`absolute left-4 top-1/2 -translate-y-1/2 ${theme.text}`}>

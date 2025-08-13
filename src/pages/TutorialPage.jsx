@@ -13,7 +13,7 @@ const TutorialPage = () => {
     };
 
     return (
-        <div className={`min-h-screen ${theme.background}`}>
+        <div className={`min-h-dvh ${theme.background}`}>
             <Steps
                 enabled={true}
                 steps={tutorialStepsPage}

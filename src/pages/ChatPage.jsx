@@ -137,14 +137,14 @@ const ChatPage = () => {
 
   if (isLoading) {
     return (
-      <div className={`flex flex-col h-screen ${theme.background} items-center justify-center`}>
+      <div className={`flex flex-col h-dvh ${theme.background} items-center justify-center`}>
         <div className="text-lg">Loading chat...</div>
       </div>
     );
   }
 
   return (
-    <div className={`flex flex-col h-screen ${theme.background} relative`}>
+    <div className={`flex flex-col h-dvh ${theme.background} relative`}>
       <Steps
         enabled={stepsEnabled}
         steps={tutorialStepsChatPage}

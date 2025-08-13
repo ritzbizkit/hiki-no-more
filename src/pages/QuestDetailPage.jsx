@@ -74,7 +74,7 @@ const QuestDetailPage = () => {
   ];
 
   return (
-    <div className={`min-h-screen p-4 flex flex-col ${theme.background}`}>
+    <div className={`min-h-dvh p-4 flex flex-col ${theme.background}`}>
       <Steps
         enabled={stepsEnabled}
         steps={tutorialStepsQuestDetail}

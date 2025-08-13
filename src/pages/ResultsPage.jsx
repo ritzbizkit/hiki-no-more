@@ -48,7 +48,7 @@ const ResultsPage = ({ answers }) => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center text-center p-4 ${theme.background}`}>
+    <div className={`min-h-dvh flex flex-col items-center justify-center text-center p-4 ${theme.background}`}>
       <h1 className="text-xl font-semibold text-white/80 mb-2">You got...</h1>
       <h2 className="text-5xl font-bold text-white mb-4">{buddy.name}!</h2>
       

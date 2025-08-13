@@ -8,7 +8,7 @@ const SettingsPage = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={`p-4 min-h-screen ${theme.background}`}>
+    <div className={`p-4 min-h-dvh ${theme.background}`}>
       <Card>
         <h1 className={`text-2xl font-bold ${theme.text}`}>Settings</h1>
         <p className={`mt-4 ${theme.text}`}>

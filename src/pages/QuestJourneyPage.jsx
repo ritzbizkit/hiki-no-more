@@ -78,7 +78,7 @@ const QuestJourneyPage = () => {
   const arcKeys = Object.keys(buddyQuestData);
 
   return (
-    <div className={`p-4 min-h-screen ${theme.background}`}>
+    <div className={`p-4 min-h-dvh ${theme.background}`}>
       <Steps
         enabled={stepsEnabled}
         steps={tutorialStepsQuests}

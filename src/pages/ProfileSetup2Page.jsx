@@ -5,7 +5,7 @@ import { PlusIcon, ChevronLeftIcon } from '@heroicons/react/24/solid';
 const ProfileSetup2Page = () => {
   return (
     <div 
-      className="flex flex-col min-h-screen p-6" 
+      className="flex flex-col min-h-dvh p-6" 
       style={{ backgroundColor: '#FBFBFE' }}
     >
       <Link to="/profile" className="flex items-center text-gray-600 mb-8">

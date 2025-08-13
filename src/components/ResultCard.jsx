@@ -12,7 +12,7 @@ const ResultCard = ({ buddy }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center min-h-screen p-6" style={{ backgroundColor: '#FBFBFE' }}>
+    <div className="flex flex-col justify-between items-center min-h-dvh p-6" style={{ backgroundColor: '#FBFBFE' }}>
       {/* ... (rest of the component is the same) ... */}
       <div className="w-full flex flex-col items-center gap-4 mt-8 max-w-xs">
         <button onClick={handleChooseBuddy} className="btn btn-lg rounded-full border-none text-black w-full" style={{ backgroundColor: '#A8D1F5' }}>

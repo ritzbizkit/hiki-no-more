@@ -24,7 +24,7 @@ const CheckInFormPage = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={`p-4 min-h-screen flex flex-col justify-between ${theme.background}`}>
+    <div className={`p-4 min-h-dvh flex flex-col justify-between ${theme.background}`}>
       <div>
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

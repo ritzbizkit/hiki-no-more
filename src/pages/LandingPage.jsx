@@ -37,7 +37,7 @@ const LandingPage = () => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center min-h-screen"
+      className="flex flex-col justify-center items-center min-h-dvh"
       style={{ backgroundColor: '#FBFBFE' }}
     >
       <Steps

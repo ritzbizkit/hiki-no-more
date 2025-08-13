@@ -374,7 +374,7 @@ const QuestCardPage = () => {
   const handleBackClick = () => navigate(`/quests/${buddyName}/${arcName}`);
 
   return (
-    <div className={`flex flex-col h-screen ${theme.background}`}>
+    <div className={`flex flex-col h-dvh ${theme.background}`}>
       <QuestHeader theme={theme} onBackClick={handleBackClick} />
       
       <QuestCard theme={theme}>
