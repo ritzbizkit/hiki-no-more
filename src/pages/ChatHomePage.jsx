@@ -46,7 +46,7 @@ const ChatHomePage = ({ activeChats }) => {
       <div className="p-4 text-center flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-2xl font-bold mb-4">Welcome to Your Chats!</h1>
         <p className="mb-6 max-w-xs">To start chatting with your buddy, you first need to find out who suits you best.</p>
-        <Link to="/" className="px-6 py-3 bg-blue-500 text-white font-bold rounded-full shadow-lg">
+        <Link to="/quiz-intro" className="px-6 py-3 bg-blue-500 text-white font-bold rounded-full shadow-lg">
           Take the Persona Quiz
         </Link>
       </div>
