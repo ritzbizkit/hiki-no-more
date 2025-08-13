@@ -8,27 +8,57 @@
 const buddies = ['avoi','enthu','iso','nervy'];
 const arcs = ['confidence', 'conversation', 'authenticity', 'anxiety'];
 
-// Available quest routes for testing
-const availableRoutes = [
-  "Authenticity_Celebrate_Uniqueness",
-  "Authenticity_Drop_The_Mask", 
-  "Authenticity_Honest_Reflection",
-  "Authenticity_Own_Your_Story",
-  "Authenticity_True_To_Myself"
-];
+const anxietyRoutes = [
+"Anxiety_Ground_Yourself",
+"Anxiety_Name_the_fear",
+"Anxiety_Setting_Boundaries",
+"Anxiety_We_all_need_help",
+"Anxiety_Youre_already_a_winner",
+]
+
+const authenticityRoutes = [
+"Authenticity_Celebrate_Uniqueness",
+"Authenticity_Drop_The_Mask",
+"Authenticity_Honest_Reflection",
+"Authenticity_Own_Your_Story",
+"Authenticity_True_To_Myself",
+]
+
+const confidenceRoutes = [
+"Confidence_Choose_what_matters",
+"Confidence_Positive_Self_Talk",
+"Confidence_Recognise_progress",
+"Confidence_Sit_With_It",
+"Confidence_Take_The_Lead",
+]
+
+const conversationRoutes = [
+"Conversation_Brave_The_Awkward",
+"Conversation_Give_A_Compliment",
+"Conversation_Keep_It_Going",
+"Conversation_Listen_Actively",
+"Conversation_Start_The_Talk",
+]
 
 // Generate quest route mapping for all permutations
 const generateQuestRouteMapping = () => {
   const mapping = {};
-  let routeIndex = 0;
   
-  // For each buddy-arc combination, create 5 quests (0-4) and cycle through available routes
+  // Map arc names to their corresponding route arrays
+  const arcRoutes = {
+    'anxiety': anxietyRoutes,
+    'authenticity': authenticityRoutes,
+    'confidence': confidenceRoutes,
+    'conversation': conversationRoutes
+  };
+  
+  // For each buddy-arc combination, create 5 quests (0-4) using the corresponding arc routes
   for (const buddy of buddies) {
     for (const arc of arcs) {
+      const routes = arcRoutes[arc];
       for (let questId = 0; questId < 5; questId++) {
         const key = `${buddy}-${arc}-${questId}`;
-        mapping[key] = availableRoutes[routeIndex % availableRoutes.length];
-        routeIndex++;
+        mapping[key] = routes[questId % routes.length];
       }
     }
   }
