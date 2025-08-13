@@ -8,7 +8,7 @@ const AppLayout = () => {
 
   return (
     <div className="flex justify-center h-screen bg-gray-200">
-      <div className="relative w-full max-w-sm bg-white shadow-xl flex flex-col">
+      <div className="relative w-full md:max-w-md bg-white shadow-xl flex flex-col">
         {/* This div contains the main content of your app and handles the scrolling */}
         <div className="flex-1 overflow-y-auto">
           <Outlet />
