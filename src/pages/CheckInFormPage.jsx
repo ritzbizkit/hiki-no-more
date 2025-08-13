@@ -56,9 +56,12 @@ const CheckInFormPage = () => {
         </Card>
       </div>
 
-      <button className={`w-full py-4 rounded-full font-bold shadow-lg ${theme.primary} ${theme.accentText}`}>
+      <Link
+        to="/check-in"
+        className={`w-full py-4 rounded-full text-center font-bold shadow-lg ${theme.primary} ${theme.accentText}`}
+      >
         Submit
-      </button>
+      </Link>
     </div>
   );
 };
