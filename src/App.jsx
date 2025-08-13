@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Providers & Layouts
-import { KeyboardProvider } from './context/KeyboardContext.jsx';
 import { BuddyProvider } from './context/BuddyContext.jsx';
 import { ChatProvider } from './context/ChatContext.jsx';
 import MobileLayout from './components/MobileLayout.jsx';
@@ -38,7 +37,6 @@ function App() {
 
   return (
     <BuddyProvider>
-      <KeyboardProvider>
         <ChatProvider>
           <MobileLayout>
             <BrowserRouter>
@@ -75,7 +73,6 @@ function App() {
             </BrowserRouter>
           </MobileLayout>
         </ChatProvider>
-      </KeyboardProvider>
     </BuddyProvider>
   );
 }

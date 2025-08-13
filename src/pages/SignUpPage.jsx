@@ -1,10 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useKeyboard } from '../context/KeyboardContext.jsx';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { showKeyboard, hideKeyboard } = useKeyboard();
   const handleSignUp = (event) => {
     event.preventDefault();
     navigate('/quiz-intro');
@@ -18,19 +16,19 @@ const SignUpPage = () => {
       <form onSubmit={handleSignUp} className="flex flex-col gap-2 w-full max-w-xs px-4">
         <div className="form-control w-full">
           <label className="label"><span className="label-text font-bold text-sm text-gray-600">Username</span></label>
-          <input type="text" placeholder="Choose a username" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" onFocus={showKeyboard} onBlur={hideKeyboard} />
+          <input type="text" placeholder="Choose a username" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" />
         </div>
         <div className="form-control w-full">
           <label className="label"><span className="label-text font-bold text-sm text-gray-600">Email</span></label>
-          <input type="email" placeholder="Your email address" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" onFocus={showKeyboard} onBlur={hideKeyboard} />
+          <input type="email" placeholder="Your email address" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" />
         </div>
         <div className="form-control w-full">
           <label className="label"><span className="label-text font-bold text-sm text-gray-600">Password</span></label>
-          <input type="password" placeholder="Create a password" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" onFocus={showKeyboard} onBlur={hideKeyboard} />
+          <input type="password" placeholder="Create a password" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" />
         </div>
         <div className="form-control w-full">
           <label className="label"><span className="label-text font-bold text-sm text-gray-600">Confirm Password</span></label>
-          <input type="password" placeholder="Confirm your password" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" onFocus={showKeyboard} onBlur={hideKeyboard} />
+          <input type="password" placeholder="Confirm your password" className="input input-bordered w-full rounded-lg bg-blue-100 placeholder:text-gray-500" />
         </div>
         <div className="form-control mt-2">
           <label className="label cursor-pointer justify-start gap-3">
