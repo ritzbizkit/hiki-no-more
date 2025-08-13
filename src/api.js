@@ -1,5 +1,5 @@
 // API base URL - hardcoded for now
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = '/api';
 
 // API functions for chat functionality
 

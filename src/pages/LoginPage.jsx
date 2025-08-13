@@ -12,11 +12,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (login(email, password)) {
-      navigate('/chat');
-    } else {
-      alert('Login failed!');
-    }
+    navigate('/chat');
   };
 
   return (
@@ -25,6 +21,7 @@ const LoginPage = () => {
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-800">Login</h1>
           <p className="mt-2 text-gray-500">Sign in to your account</p>
+          <p className="mt-2 text-xs text-gray-500">Note: No need to have account, just press login.</p>
         </div>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
