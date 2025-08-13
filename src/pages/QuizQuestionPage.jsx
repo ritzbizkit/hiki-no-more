@@ -71,23 +71,6 @@ const QuizQuestionPage = ({ answers, setAnswers }) => {
           // This is an invisible spacer to keep "Next" on the right
           <div className="w-28"></div> 
         )}
-
-        {hasNext ? (
-          <Link 
-            to={`/quiz/${nextQuestionId}`}
-            className="px-8 py-3 bg-blue-400 text-white font-bold rounded-full shadow-lg"
-          >
-            Next
-          </Link>
-        ) : (
-          // On the last question, you might want a "Finish" button instead
-           <button 
-            onClick={() => navigate('/results')}
-            className="px-8 py-3 bg-green-500 text-white font-bold rounded-full shadow-lg"
-          >
-            Finish
-          </button>
-        )}
       </div>
     </div>
   );
