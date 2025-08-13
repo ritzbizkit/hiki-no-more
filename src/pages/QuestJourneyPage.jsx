@@ -38,7 +38,7 @@ const QuestJourneyPage = () => {
       if (tutorialCompleted !== 'true') {
         setStepsEnabled(true);
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(handle);
   }, []);
